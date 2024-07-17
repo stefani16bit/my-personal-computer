@@ -1,0 +1,38 @@
+.computer-button-container {
+	display: flex;
+	justify-content: right;
+	position: relative;
+	height: 50px;
+	width: 100%;
+	right: 75px;
+	top: 35px;
+	gap: 10px;
+}
+
+.computer-button-light {
+	width: 15px;
+	height: 15px;
+	background-color: #00ff37;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+    box-shadow: 0px 0px 25px 3px #05d432
+}
+
+.computer-button{
+	width: 80px;
+	background-color: #8f8f8f;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+.computer-button:hover{
+	cursor:pointer; 
+}
+
+.shadow {
+    position: absolute;
+	width: 800px;
+	height: 600px;
+	box-shadow: inset 0px 0px 70px 0 #2c2c2c;
+}
