@@ -165,6 +165,16 @@
 	cursor: pointer;
 }
 
+.date-time-container{
+	display: flex;
+	align-items: end;
+	flex-direction: column;
+	position: absolute;
+	width: 780px;
+	margin-top: 565px;
+
+}
+
 @media (min-width: 250px) {
 	.main {
 		transform: scale(0.25);

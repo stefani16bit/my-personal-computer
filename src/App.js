@@ -1,7 +1,20 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import IconsDisplay from "./components/IconsDisplay";
 
 function App() {
+	const [currentDate, setCurrentDate] = useState(new Date());
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentDate(new Date());
+		}, 1000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [currentDate]);
+
 	return (
 		<div className="main">
 			<div className="computer-crt-container">
@@ -9,7 +22,7 @@ function App() {
 					<div className="computer-screen">
 						<img className="computer-screen-background" src="icons/bg.png" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 						<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
-							<IconsDisplay icon="icons/explorer.png" title="internet" x={0} y={0}/>
+							<IconsDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
 							<IconsDisplay icon="icons/instagram.png" title="instagram" x={0} y={1} />
 							<IconsDisplay icon="icons/x.png" title="twitter" x={0} y={2} />
 							<IconsDisplay icon="icons/pc.png" title="meu setup" x={0} y={4} />
@@ -19,10 +32,10 @@ function App() {
 							<IconsDisplay icon="icons/cmd.png" title="cmd" x={18} y={0} />
 							<IconsDisplay icon="icons/txt.png" title="sobre mim" x={8} y={3} />
 							<IconsDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
-
 						</div>
 						<div className="date-time-container">
-
+							<span style={{fontSize:"11px", color:"black", fontWeight:"bold"}}>{`${currentDate.toLocaleTimeString()}`}</span>
+							<span style={{fontSize:"11px", color:"black", fontWeight:"bold"}}>{`${currentDate.toLocaleDateString()}`}</span>
 						</div>
 						<div className="shadow"></div>
 					</div>
