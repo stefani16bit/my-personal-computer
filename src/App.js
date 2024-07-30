@@ -1,35 +1,29 @@
 import "./App.css";
+import IconsDisplay from "./components/IconsDisplay";
 
 function App() {
 	return (
-		<div style={{ width: "100vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-			<div
-				className="computer-crt-container"
-				style={{
-					width: "1000px",
-					height: "770px",
-					minHeight: "770px",
-					backgroundColor: "gray",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-					borderRadius: "5px",
-					boxShadow: "inset 20px 0 1px 0px rgba(85, 85, 85, 0.5)",
-				}}
-			>
+		<div className="main">
+			<div className="computer-crt-container">
 				<div className="computer-screen-container">
-					<div
-						className="computer-screen"
-						style={{
-							width: "800px",
-							height: "600px",
-							display: "flex",
-							borderRadius: "2px",
-							border: "25px solid #8f8f8f",
-						}}
-					>
+					<div className="computer-screen">
 						<img className="computer-screen-background" src="icons/bg.png" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
+						<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
+							<IconsDisplay icon="icons/explorer.png" title="internet" x={0} y={0}/>
+							<IconsDisplay icon="icons/instagram.png" title="instagram" x={0} y={1} />
+							<IconsDisplay icon="icons/x.png" title="twitter" x={0} y={2} />
+							<IconsDisplay icon="icons/pc.png" title="meu setup" x={0} y={4} />
+							<IconsDisplay icon="icons/spotify.png" title="spotify" x={0} y={3} />
+							<IconsDisplay icon="icons/windows-folder.png" title="pastinha" x={0} y={5} />
+							<IconsDisplay icon="icons/msn.png" title="msn" x={1.5} y={0} />
+							<IconsDisplay icon="icons/cmd.png" title="cmd" x={18} y={0} />
+							<IconsDisplay icon="icons/txt.png" title="sobre mim" x={8} y={3} />
+							<IconsDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
+
+						</div>
+						<div className="date-time-container">
+
+						</div>
 						<div className="shadow"></div>
 					</div>
 				</div>
@@ -38,93 +32,29 @@ function App() {
 					<button className="computer-button"></button>
 				</div>
 			</div>
-			<div
-				className="computer-stand"
-				style={{
-					display: "flex",
-					height: "50px",
-					minHeight: "50px",
-					width: "500px",
-					borderRadius: "150px 150px 0 0",
-					backgroundColor: "gray",
-					boxShadow: "inset 0px 10px 1px 6px rgba(85, 85, 85, 0.5)",
-				}}
-			></div>
-			<div
-				className="computer-case"
-				style={{
-					display: "flex",
-					height: "200px",
-					width: "1000px",
-					backgroundColor: "gray",
-					marginTop: "5px",
-					borderRadius: "5px",
-					boxShadow: "inset 20px 0 1px 0px rgba(85, 85, 85, 0.5)",
-				}}
-			>
-				<div className="computer-diskhat-container" style={{ height: "100px", width: "100%", position: "absolute" }}>
-					<div
-						className="computer-diskhat"
-						style={{
-							display: "flex",
-							height: "100px",
-							width: "300px",
-							backgroundColor: "#9c9c9c",
-							borderRadius: "5px",
-							margin: "40px",
-							justifyContent: "center",
-							alignItems: "center",
-							flexDirection: "column",
-						}}
-					>
-						<div
-							className="computer-diskhat-input-container"
-							style={{ height: "100px", width: "300px", position: "absolute", display: "flex", justifyContent: "center", alignItems: "center" }}
-						>
-							<div
-								className="computer-diskhat-input"
-								style={{
-									display: "flex",
-									height: "20px",
-									width: "250px",
-									backgroundColor: "#555555",
-									borderRadius: "5px",
-									justifyContent: "center",
-									alignItems: "center",
-								}}
-							>
-								<div
-									className="computer-diskhat-input-2"
-									style={{
-										display: "flex",
-										height: "40px",
-										width: "80px",
-										backgroundColor: "#555555",
-										borderRadius: "5px",
-									}}
-								></div>
+			<div className="computer-stand"></div>
+			<div className="computer-case">
+				<div className="computer-diskhat-container" style={{ height: "100%", width: "100%" }}>
+					<div className="computer-diskhat">
+						<div className="computer-diskhat-input-container">
+							<div className="computer-diskhat-input">
+								<div className="computer-diskhat-input-2"></div>
+							</div>
+							<div className="computer-diskhat-button-container" style={{ height: "100px", width: "300px", position: "absolute" }}>
+								<div className="computer-diskhat-button"></div>
 							</div>
 						</div>
 					</div>
-
-					<div className="computer-diskhat-button-container" style={{ height: "100px", width: "300px", position: "absolute" }}>
-						<div
-							className="computer-diskhat-button"
-							style={{
-								display: "flex",
-								height: "10px",
-								width: "40px",
-								backgroundColor: "#555555",
-								borderRadius: "2px",
-								position: "absolute",
-								left: "250px",
-								top: "80px",
-							}}
-						></div>
+				</div>
+				<div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", paddingTop: "30px" }}>
+					<div className="computer-turn-button-container">
+						<button className="computer-turn-button"></button>
+					</div>
+					<div className="computer-case-fans-container">
+						<img src="icons/fans.png" style={{ width: "279px", height: "80px" }}></img>
 					</div>
 				</div>
 			</div>
-			<div className="computer-case-button"></div>
 		</div>
 	);
 }
