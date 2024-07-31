@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import IconsDisplay from "./components/IconsDisplay";
+import AppDisplay from "./components/AppDisplay";
 
 function App() {
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -17,6 +18,9 @@ function App() {
 
 	return (
 		<div className="main">
+			<div style={{height:"551px", width:"800px"}}>
+				<AppDisplay title="internet" icon="icons/explorer.png" width={530} height={350} titleColor="white" backgroundColor="white" topBarColor="#0078d7" />
+			</div>
 			<div className="computer-crt-container">
 				<div className="computer-screen-container">
 					<div className="computer-screen">
@@ -28,14 +32,14 @@ function App() {
 							<IconsDisplay icon="icons/pc.png" title="meu setup" x={0} y={4} />
 							<IconsDisplay icon="icons/spotify.png" title="spotify" x={0} y={3} />
 							<IconsDisplay icon="icons/windows-folder.png" title="pastinha" x={0} y={5} />
-							<IconsDisplay icon="icons/msn.png" title="msn" x={1.5} y={0} />
+							<IconsDisplay icon="icons/steam.png" title="steam" x={1.5} y={0} />
 							<IconsDisplay icon="icons/cmd.png" title="cmd" x={18} y={0} />
 							<IconsDisplay icon="icons/txt.png" title="sobre mim" x={8} y={3} />
 							<IconsDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
 						</div>
 						<div className="date-time-container">
-							<span style={{fontSize:"11px", color:"black", fontWeight:"bold"}}>{`${currentDate.toLocaleTimeString()}`}</span>
-							<span style={{fontSize:"11px", color:"black", fontWeight:"bold"}}>{`${currentDate.toLocaleDateString()}`}</span>
+							<span style={{ fontSize: "11px", color: "black", fontWeight: "bold" }}>{`${currentDate.toLocaleTimeString()}`}</span>
+							<span style={{ fontSize: "11px", color: "black", fontWeight: "bold" }}>{`${currentDate.toLocaleDateString()}`}</span>
 						</div>
 						<div className="shadow"></div>
 					</div>

@@ -1,0 +1,46 @@
+.app-interface-container{
+    border-radius: 5px;
+    z-index: 2000;
+}
+
+.app-interface-top-bar-container {
+	display: flex;
+	flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.app-interface-top-bar-left-icons-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 5px;
+}
+
+.app-interface-right-icons-container{
+    gap: 5px;
+    margin-right: 5px;
+}
+
+.app-interface-top-bar-min-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.app-interface-top-bar-title{
+    font-size: 10px;
+}
+
+.app-interface-top-bar-close-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.app-interface-top-bar-icon {
+	width: 20px;
+	height: 20px;
+}
