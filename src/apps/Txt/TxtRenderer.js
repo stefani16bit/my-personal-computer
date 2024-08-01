@@ -9,7 +9,7 @@ function TxtRenderer({ appCoreRef }) {
 
 	return <div>
 		<h2>
-			EU AMO A MINHA MULHER<span>{test}</span>
+			Teste<span>{test}</span>
 		</h2>
 
 		<button onClick={() => setTest(test + 1)}>Clique aqui</button>
