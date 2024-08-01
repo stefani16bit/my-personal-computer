@@ -10,6 +10,7 @@
     justify-content: space-between;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: move;
 }
 
 .app-interface-top-bar-left-icons-container{

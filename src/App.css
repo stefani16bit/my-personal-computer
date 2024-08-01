@@ -6,6 +6,29 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+.lock-computer-screen-container{
+	width: 800px;
+	height: 562px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 60px;
+	overflow: hidden;
+}
+
+.lock-computer-crt-container{
+	width: 1000px;
+	height: 1010px;
+	min-height: 770px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+
+}
+
 .computer-crt-container {
 	width: 1000px;
 	height: 770px;

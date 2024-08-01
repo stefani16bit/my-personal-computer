@@ -1,6 +1,6 @@
-import "./IconsDisplay.css";
+import "./IconDisplay.css";
 
-function IconsDisplay({ icon, title, x, y, onIconClicked }) {
+function IconDisplay({ icon, title, x, y, onIconClicked }) {
 	const xPosition = 15 + x * 40;
 	const yPosition = 15 + y * (45 + 20 + 10);
 
@@ -27,4 +27,4 @@ function IconsDisplay({ icon, title, x, y, onIconClicked }) {
 	);
 }
 
-export default IconsDisplay;
+export default IconDisplay;
