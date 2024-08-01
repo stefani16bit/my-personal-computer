@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
 import "./AppDisplay.css";
+
+import React, { useEffect, useRef } from "react";
 
 const AppDisplay = React.forwardRef(
 	(

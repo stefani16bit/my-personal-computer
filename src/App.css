@@ -14,7 +14,7 @@
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 60px;
+	top: 52px;
 	overflow: hidden;
 }
 
@@ -188,15 +188,6 @@
 	cursor: pointer;
 }
 
-.date-time-container{
-	display: flex;
-	align-items: end;
-	flex-direction: column;
-	position: absolute;
-	width: 780px;
-	margin-top: 565px;
-
-}
 
 @media (min-width: 250px) {
 	.main {

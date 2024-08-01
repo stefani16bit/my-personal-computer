@@ -1,6 +1,9 @@
+import React, { useEffect, useRef, useState } from "react";
+
 import "./App.css";
 
-import React, { useEffect, useRef, useState } from "react";
+import IconDisplay from "./components/IconDisplay";
+import Clock from "./components/Clock";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
@@ -19,17 +22,6 @@ function App() {
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
 	};
 
-	const [currentDate, setCurrentDate] = useState(new Date());
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentDate(new Date());
-		}, 1000);
-
-		return () => {
-			clearInterval(interval);
-		};
-	}, [currentDate]);
 
 	useEffect(() => {
 		const registeredStateListeners = [];
@@ -74,17 +66,15 @@ function App() {
 							<IconDisplay icon="icons/steam.png" title="steam" x={1.5} y={0} />
 							<IconDisplay icon="icons/cmd.png" title="cmd" x={18} y={0} />
 							<IconDisplay icon="icons/txt.png" title="sobre mim" x={8} y={3} />
-							<IconDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} /> */}
+							 */}
 
 							{/* {apps.map((app) => app.makeIcon())} */}
+							<IconDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
 
 							<Terminal iconX={18} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
 							<Txt iconX={8} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
 						</div>
-						<div className="date-time-container">
-							<span style={{ fontSize: "11px", color: "black", fontWeight: "bold" }}>{`${currentDate.toLocaleTimeString()}`}</span>
-							<span style={{ fontSize: "11px", color: "black", fontWeight: "bold" }}>{`${currentDate.toLocaleDateString()}`}</span>
-						</div>
+						<Clock/>
 						<div className="shadow"></div>
 					</div>
 				</div>

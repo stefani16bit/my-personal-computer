@@ -6,10 +6,13 @@ import AppDisplay from "../components/AppDisplay";
 const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, width, height, backgroundColor, topBarColor, titleColor, parentRef }, ref) => {
 	const [isOpened, setIsOpened] = useState(false);
 
-	const [currentX, setCurrentX] = useState(0);
-	const [currentY, setCurrentY] = useState(0);
+	const currentX = useRef(0);
+	const currentY = useRef(0);
 
 	const appDisplayRef = useRef(null);
+
+	let pinXOffset = 0;
+	let pinYOffset = 0;
 
 	const onAppCoreOpenStateChangedListeners = [];
 
@@ -28,27 +31,58 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 		onAppCoreOpenStateChangedListeners.forEach((listener) => listener(isOpened));
 	}
 
+	function getDragTargetPosition(screenX, screenY) {
+		const { x: appX, y: appY, left: appLeft, top: appTop } = appDisplayRef.current.getBoundingClientRect();
+		const { width: parentWidth, height: parentHeight, x: parentX, y: parentY, left: parentLeft, top: parentTop } = parentRef.current.getBoundingClientRect();
+
+		const targetX = screenX - parentWidth / 2;
+		const targetY = screenY - parentHeight / 2 - 30;
+
+		return {
+			targetX,
+			targetY,
+			pinX: targetX - (parentX - appX) - (appLeft - parentLeft) * 2,
+			pinY: targetY - (parentY - appY) - (appTop - parentTop) * 2,
+			parentWidth,
+			parentHeight,
+			parentX,
+			parentY,
+			parentLeft,
+			parentTop,
+		};
+	}
+
 	function onAppDragBegin(event) {
+		const { pinX, pinY } = getDragTargetPosition(event.screenX, event.screenY);
+
+		pinXOffset = pinX;
+		pinYOffset = pinY;
+
 		event.dataTransfer.setDragImage(new Image(), 0, 0);
 	}
 
 	function onAppDragEnd(event) {
+		event.preventDefault();
 	}
 
 	function onAppDrag(event) {
-		const {clientX, clientY} = event;
-		setCurrentX(clientX);
-		setCurrentY(clientY);
-
-		if (!appDisplayRef?.current) {
+		if (!appDisplayRef?.current || !parentRef?.current) {
 			return;
 		}
 
-		const {x, y} = appDisplayRef.current.getBoundingClientRect()
+		let { targetX, targetY, parentWidth, parentHeight } = getDragTargetPosition(event.screenX, event.screenY);
+		targetX -= pinXOffset;
+		targetY -= pinYOffset;
 
-		appDisplayRef.current.style.left = `${clientX - x}px`;
-		appDisplayRef.current.style.top = `${clientY}px`;
+		if (targetX <= 0 || targetY <= 0 || targetX >= parentWidth - 20 || targetY >= parentHeight - 20) {
+			return;
+		}
 
+		appDisplayRef.current.style.left = `${targetX}px`;
+		appDisplayRef.current.style.top = `${targetY}px`;
+
+		currentX.current = targetX;
+		currentY.current = targetY;
 	}
 
 	useImperativeHandle(
@@ -80,14 +114,20 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 			currentY: currentY,
 
 			render() {
+				{
+					const { width: parentWidth, height: parentHeight } = parentRef.current.getBoundingClientRect();
+					currentX.current = (parentWidth - width) / 2;
+					currentY.current = (parentHeight - height) / 2;
+				}
+
 				return (
 					<AppDisplay
 						title={title}
 						icon={icon}
 						width={width}
 						height={height}
-						x={currentX}
-						y={currentY}
+						x={currentX?.current || 0}
+						y={currentY?.current || 0}
 						titleColor={titleColor}
 						backgroundColor={backgroundColor}
 						topBarColor={topBarColor}
