@@ -1,0 +1,36 @@
+.terminal-renderer-container{
+    color: #07fc0d;
+    font-family: monospace;
+}
+
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .terminal-renderer-container {
+    color: white;
+    background-color: black;
+    padding: 10px;
+    font-family: monospace;
+    min-height: 100vh;
+  }
+  
+  .terminal-input {
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: monospace;
+    caret-color: white;
+    animation: blink-caret 1s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: white; }
+  }
+  

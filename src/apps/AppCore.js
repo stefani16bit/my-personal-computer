@@ -5,7 +5,7 @@ import AppDisplay from "../components/AppDisplay";
 
 const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, width, height, backgroundColor, topBarColor, titleColor, parentRef }, ref) => {
 	const [isOpened, setIsOpened] = useState(false);
-
+	
 	const currentX = useRef(0);
 	const currentY = useRef(0);
 

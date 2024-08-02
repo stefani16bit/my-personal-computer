@@ -22,7 +22,6 @@ function App() {
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
 	};
 
-
 	useEffect(() => {
 		const registeredStateListeners = [];
 
@@ -57,24 +56,22 @@ function App() {
 					<div className="computer-screen">
 						<img className="computer-screen-background" src="icons/bg.png" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 						<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
-							{/* <IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
+							{/* {apps.map((app) => app.makeIcon())} */}
+							<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
+							<IconDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
+							<IconDisplay icon="icons/pc.png" title="meu pc" x={18} y={1} />
+							<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={18} y={2} />
+							<IconDisplay icon="icons/spotify.png" title="spotify" x={0} y={3} />
 							<IconDisplay icon="icons/instagram.png" title="instagram" x={0} y={1} />
 							<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} />
-							<IconDisplay icon="icons/pc.png" title="meu setup" x={0} y={4} />
-							<IconDisplay icon="icons/spotify.png" title="spotify" x={0} y={3} />
-							<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={0} y={5} />
-							<IconDisplay icon="icons/steam.png" title="steam" x={1.5} y={0} />
-							<IconDisplay icon="icons/cmd.png" title="cmd" x={18} y={0} />
-							<IconDisplay icon="icons/txt.png" title="sobre mim" x={8} y={3} />
-							 */}
-
-							{/* {apps.map((app) => app.makeIcon())} */}
-							<IconDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
+							<IconDisplay icon="icons/linkedin.png" title="linkedin" x={0} y={5} />
+							<IconDisplay icon="icons/github.png" title="github" x={0} y={6} />
+							<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} />
 
 							<Terminal iconX={18} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
 							<Txt iconX={8} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
 						</div>
-						<Clock/>
+						<Clock />
 						<div className="shadow"></div>
 					</div>
 				</div>

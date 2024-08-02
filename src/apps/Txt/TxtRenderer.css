@@ -1,0 +1,16 @@
+.app-txt-renderer-container {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.app-txt-renderer-container h1 {
+	margin: 0px;
+}
+
+.app-txt-renderer-selfie {
+	width: 100%;
+	display: flex;
+	justify-content: end;
+	margin-top: 20px;
+}

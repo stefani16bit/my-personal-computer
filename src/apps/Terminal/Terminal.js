@@ -9,12 +9,12 @@ const Terminal = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
             AppRenderer={TerminalRenderer}
 			iconX={iconX}
 			iconY={iconY}
-			title="terminal"
+			title="Terminal"
 			icon="icons/cmd.png"
 			width={530}
 			height={350}
-			backgroundColor="white"
-			topBarColor="#0078d7"
+			backgroundColor="#000000"
+			topBarColor="#01009b"
 			titleColor="white"
 			ref={ref}
             parentRef={parentRef}

@@ -55,7 +55,10 @@ const AppDisplay = React.forwardRef(
 						<img src="icons/Exit.png" className="app-interface-top-bar-close-icon" onClick={onCloseButtonClick} />
 					</div>
 				</div>
-				<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 30}px` }}>
+				<div className="app-txt-renderer-bar">
+					<a>File Edit Search Help</a>
+				</div>
+				<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 55}px`, overflow: "hidden", overflowY:"auto" }}>
 					{children}
 				</div>
 			</div>

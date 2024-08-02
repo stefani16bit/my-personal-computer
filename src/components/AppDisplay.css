@@ -1,6 +1,6 @@
 .app-interface-container{
-    border-radius: 5px;
     z-index: 2000;
+    border: 3px solid #b1b1b1;
 }
 
 .app-interface-top-bar-container {
@@ -8,8 +8,6 @@
 	flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     cursor: move;
 }
 
@@ -23,8 +21,8 @@
 }
 
 .app-interface-right-icons-container{
-    gap: 5px;
     margin-right: 5px;
+    display: flex;
 }
 
 .app-interface-top-bar-min-icon {
@@ -33,7 +31,8 @@
 }
 
 .app-interface-top-bar-title{
-    font-size: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .app-interface-top-bar-close-icon {
@@ -45,3 +44,16 @@
 	width: 20px;
 	height: 20px;
 }
+
+.app-txt-renderer-bar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: sticky;
+	width: 100%;
+	height: 25px;
+	background-color: #b1b1b1;
+	font-size: 15px;
+    
+}
+

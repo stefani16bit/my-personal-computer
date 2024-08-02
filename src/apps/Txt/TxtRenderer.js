@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 
+import "./TxtRenderer.css";
+
 function TxtRenderer({ appCoreRef }) {
-	const [test, setTest] = useState(parseInt(localStorage.getItem("j") || 0));
+	return (
+		<div className="app-txt-renderer-container">
+			<h1>Hello!</h1>
+			<a>My name is Stefani, nice to meet you. I'm a 22 year old software developer, currently on my last year of Computer Science. </a>
 
-	useEffect(() => {
-		localStorage.setItem("j", test);
-	}, [test])
+			<div className="app-txt-renderer-selfie">
+				<a>
+					I have a huge love for retro tech, including old computers, CRTs and games.
+				</a>
+				<img src="icons/selfie.jpg" style={{ width: "140px", height: "147px" }}></img>
+			</div>
 
-	return <div>
-		<h2>
-			Teste<span>{test}</span>
-		</h2>
+			<div>
+				<a>interests:</a>
+			</div>
+			<div>
+			programming, computer arch, crts, retro tech, astrophysics, antrophology, gaming, music, art, old anime, mecha, sushi, hack n' slash, horror movies, sci-fi, aliens, energy drinks 
 
-		<button onClick={() => setTest(test + 1)}>Clique aqui</button>
-	</div>;
+			</div>
+		</div>
+	);
 }
 
 export default TxtRenderer;
