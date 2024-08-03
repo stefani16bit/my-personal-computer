@@ -1,0 +1,35 @@
+.task-bar-app-display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #bdb7c0;
+	gap: 10px;
+	padding: 1.5px;
+	z-index: 9000;
+	border: 2px outset;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px 0px #3b3b3b;
+}
+
+.task-bar-app-title {
+	font-size: 15px;
+	font-weight: bold;
+}
+.task-bar-app-icon-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.task-bar-app-display:active {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #a7a2aa;
+	gap: 10px;
+	padding: 2px;
+	z-index: 9000;
+	border: 2px inset;
+	cursor: pointer
+	
+}

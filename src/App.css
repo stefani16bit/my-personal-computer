@@ -7,18 +7,28 @@
 	flex-direction: column;
 }
 
-.lock-computer-screen-container{
+.lock-computer-screen-container {
 	width: 800px;
 	height: 562px;
+	top: 52px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 52px;
 	overflow: hidden;
 }
 
-.lock-computer-crt-container{
+.computer-taskbar-container {
+	width: 800px;
+	height: 38px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 614px;
+}
+
+.lock-computer-crt-container {
 	width: 1000px;
 	height: 1010px;
 	min-height: 770px;
@@ -26,7 +36,6 @@
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-
 }
 
 .computer-crt-container {
@@ -84,7 +93,10 @@
 	position: absolute;
 	width: 800px;
 	height: 600px;
+	top: 52px;
+	z-index: 10000;
 	box-shadow: inset 0px 0px 50px 0 #361c32;
+	pointer-events: none;
 }
 
 .computer-stand {
@@ -100,6 +112,7 @@
 .computer-case {
 	display: flex;
 	height: 200px;
+	min-height: 200px;
 	width: 1000px;
 	background-color: gray;
 	margin-top: 5px;
@@ -165,7 +178,6 @@
 .computer-turn-button-container {
 	display: flex;
 	padding-left: 140px;
-	
 }
 
 .computer-turn-button {
@@ -178,16 +190,34 @@
 	cursor: pointer;
 }
 
-.computer-case-fans-container{
+.computer-case-fans-container {
 	display: flex;
 	padding-right: 45px;
-
 }
 
-.computer-screen-icons-container img:hover{
+.computer-screen-icons-container img:hover {
 	cursor: pointer;
 }
 
+.glitch-screen-effect {
+	width: 800px;
+	height: 600px;
+	top: 52px;
+	position: absolute;
+	overflow: hidden;
+	z-index: 20000;
+	opacity: 5%;
+	pointer-events: none;
+}
+
+.computer-taskbar-container {
+	width: 800px;
+	display: flex;
+	justify-content: start;
+	position: absolute;
+	gap: 5px;
+	right: 2px;
+}
 
 @media (min-width: 250px) {
 	.main {

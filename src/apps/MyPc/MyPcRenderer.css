@@ -1,0 +1,6 @@
+.my-pc-renderer-container{
+    width: 100%;
+    height: 100%;
+    border: 5px inset #b1b1b1;
+    background-color: #9d9d9d;
+}

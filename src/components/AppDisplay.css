@@ -1,6 +1,7 @@
 .app-interface-container{
     z-index: 2000;
     border: 3px solid #b1b1b1;
+	box-shadow: 0px 0px 15px 0px #474747;
 }
 
 .app-interface-top-bar-container {
@@ -28,6 +29,7 @@
 .app-interface-top-bar-min-icon {
 	width: 20px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .app-interface-top-bar-title{
@@ -38,6 +40,7 @@
 .app-interface-top-bar-close-icon {
 	width: 20px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .app-interface-top-bar-icon {

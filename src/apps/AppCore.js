@@ -3,9 +3,13 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import IconsDisplay from "../components/IconDisplay";
 import AppDisplay from "../components/AppDisplay";
 
+import { useAppsManager } from "../context/AppsManagerContext";
+
 const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, width, height, backgroundColor, topBarColor, titleColor, parentRef }, ref) => {
+	const { openApp, closeApp, focusApp } = useAppsManager();
+
 	const [isOpened, setIsOpened] = useState(false);
-	
+
 	const currentX = useRef(0);
 	const currentY = useRef(0);
 
@@ -31,6 +35,10 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 		onAppCoreOpenStateChangedListeners.forEach((listener) => listener(isOpened));
 	}
 
+	function onAppClick() {
+		focusApp(appDisplayRef);
+	}
+
 	function getDragTargetPosition(screenX, screenY) {
 		const { x: appX, y: appY, left: appLeft, top: appTop } = appDisplayRef.current.getBoundingClientRect();
 		const { width: parentWidth, height: parentHeight, x: parentX, y: parentY, left: parentLeft, top: parentTop } = parentRef.current.getBoundingClientRect();
@@ -53,6 +61,8 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 	}
 
 	function onAppDragBegin(event) {
+		focusApp(appDisplayRef);
+
 		const { pinX, pinY } = getDragTargetPosition(event.screenX, event.screenY);
 
 		pinXOffset = pinX;
@@ -88,6 +98,8 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 	useImperativeHandle(
 		ref,
 		() => ({
+			appearence: { icon, title },
+
 			onAppCoreOpenStateChanged(callback) {
 				addOnAppCoreOpenStateChangedListener(callback);
 				return () => {
@@ -96,16 +108,23 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 			},
 
 			open() {
-				setIsOpened(true);
+				focusApp(appDisplayRef);
+				openApp(ref.current);
 				callOnAppCoreOpenStateChangedListeners(true);
+				setIsOpened(true);
+
+				requestAnimationFrame(() => {
+					ref.current.minimize(true);
+				});
 			},
 			close() {
-				setIsOpened(false);
+				closeApp(ref.current);
 				callOnAppCoreOpenStateChangedListeners(false);
+				setIsOpened(false);
 			},
 
-			minimize() {
-				console.log("minimize");
+			minimize(state) {
+				appDisplayRef.current.style.display = (state == true || appDisplayRef.current.style.display === "none") ? "block" : "none";
 			},
 
 			isOpened: isOpened,
@@ -131,6 +150,7 @@ const AppCore = React.forwardRef(({ AppRenderer, iconX, iconY, title, icon, widt
 						titleColor={titleColor}
 						backgroundColor={backgroundColor}
 						topBarColor={topBarColor}
+						onClick={onAppClick}
 						onMinimizeButtonClick={() => {
 							ref?.current?.minimize();
 						}}

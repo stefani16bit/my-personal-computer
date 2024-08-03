@@ -2,6 +2,8 @@ import "./AppDisplay.css";
 
 import React, { useEffect, useRef } from "react";
 
+import { useAppsManager } from "../context/AppsManagerContext";
+
 const AppDisplay = React.forwardRef(
 	(
 		{
@@ -15,15 +17,19 @@ const AppDisplay = React.forwardRef(
 			topBarColor,
 			titleColor,
 			children,
+			onClick,
 			onMinimizeButtonClick,
 			onCloseButtonClick,
 			onTopBarDragStart,
 			onTopBarDragEnd,
 			onTopBarDrag,
 			setDisplayRef,
+			overflowY = 'auto',
 		},
 		ref
 	) => {
+		const { focusedApp } = useAppsManager();
+
 		const appDisplayRef = useRef(null);
 
 		useEffect(() => {
@@ -33,8 +39,17 @@ const AppDisplay = React.forwardRef(
 		return (
 			<div
 				className="app-interface-container"
-				style={{ left: `${x}px`, top: `${y}px`, height: height, width: width, position: "absolute", backgroundColor: backgroundColor }}
+				style={{
+					left: `${x}px`,
+					top: `${y}px`,
+					height: height,
+					width: width,
+					position: "absolute",
+					backgroundColor: backgroundColor,
+					zIndex: focusedApp?.current == appDisplayRef?.current ? 10000 : 9990,
+				}}
 				ref={appDisplayRef}
+				onClick={onClick}
 			>
 				<div
 					draggable
@@ -58,7 +73,7 @@ const AppDisplay = React.forwardRef(
 				<div className="app-txt-renderer-bar">
 					<a>File Edit Search Help</a>
 				</div>
-				<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 55}px`, overflow: "hidden", overflowY:"auto" }}>
+				<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 55}px`, overflow: "hidden", overflowY:{overflowY} }}>
 					{children}
 				</div>
 			</div>

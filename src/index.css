@@ -11,17 +11,22 @@ body {
 }
 
 
-::-webkit-scrollbar-track {
-	background-color: #c4c4c4; 
-}
-::-webkit-scrollbar-thumb {
-	background-color: #7f7f7f;
-	border: 2px solid #c4c4c4;
-}
-::-webkit-scrollbar-button {
-	background-color: #c4c4c4; 
-	border: 2px solid #7f7f7f; 
-}
-::-webkit-scrollbar-corner {
-	background-color: #c4c4c4;
-}
+::-webkit-scrollbar {
+	width: 10px;
+	height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: #555;
+  }

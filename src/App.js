@@ -4,22 +4,32 @@ import "./App.css";
 
 import IconDisplay from "./components/IconDisplay";
 import Clock from "./components/Clock";
+import TaskBarAppDisplay from "./components/TaskBarAppDisplay";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
+import MyPc from "./apps/MyPc/MyPc";
+
+import { useAppsManager } from "./context/AppsManagerContext";
 
 function App() {
+	const { openedApps } = useAppsManager();
+
 	const appsDisplayParentRef = useRef(null);
+	const appsTaskBarParentRef = useRef(null);
 
 	const terminalRef = useRef(null);
 	const txtRef = useRef(null);
+	const myPcRef = useRef(null);
 
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
+	const [isMyPcOpened, setIsMyPcOpened] = useState(false);
 
 	const appsStateMap = {
 		termainal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
+		mypc: { ref: myPcRef, isOpened: isMyPcOpened, setIsOpened: setIsMyPcOpened },
 	};
 
 	useEffect(() => {
@@ -38,19 +48,28 @@ function App() {
 		return () => {
 			registeredStateListeners.forEach((removeListener) => removeListener());
 		};
-	}, [terminalRef, txtRef]);
+	}, [terminalRef, txtRef, myPcRef]);
 
 	return (
 		<div className="main">
 			<div className="lock-computer-crt-container">
+				<img className="glitch-screen-effect" src="icons/glitch.png" />
+
+				<div className="shadow" />
+
 				<div className="lock-computer-screen-container" ref={appsDisplayParentRef}>
-					{/* {apps.map((app) => (app.isOpened ? app.render() : null))} */}
 					{isTerminalOpened ? terminalRef?.current?.render() : null}
 					{isTxtOpened ? txtRef?.current?.render() : null}
+					{isMyPcOpened ? myPcRef?.current?.render() : null}
+				</div>
 
-					{/* <AppDisplay title="internet" icon="icons/explorer.png" width={530} height={350} titleColor="white" backgroundColor="white" topBarColor="#0078d7" /> */}
+				<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
+					{openedApps.map((appRef) => {
+						return <TaskBarAppDisplay appRef={appRef} />;
+					})}
 				</div>
 			</div>
+
 			<div className="computer-crt-container">
 				<div className="computer-screen-container">
 					<div className="computer-screen">
@@ -58,21 +77,34 @@ function App() {
 						<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
 							{/* {apps.map((app) => app.makeIcon())} */}
 							<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
-							<IconDisplay icon="icons/bin.png" title="lixeira" x={18} y={6} />
-							<IconDisplay icon="icons/pc.png" title="meu pc" x={18} y={1} />
-							<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={18} y={2} />
-							<IconDisplay icon="icons/spotify.png" title="spotify" x={0} y={3} />
-							<IconDisplay icon="icons/instagram.png" title="instagram" x={0} y={1} />
-							<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} />
-							<IconDisplay icon="icons/linkedin.png" title="linkedin" x={0} y={5} />
-							<IconDisplay icon="icons/github.png" title="github" x={0} y={6} />
-							<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} />
+							<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6} />
+							<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={14.5} y={2} />
+							<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
+							<IconDisplay
+								icon="icons/spotify.png"
+								title="spotify"
+								x={0}
+								y={3}
+								href="https://open.spotify.com/user/22mrt5ov3taytdsgwmnfkmory?si=32b3f2cea68c4958"
+							/>
+							<IconDisplay
+								icon="icons/instagram.png"
+								title="instagram"
+								x={0}
+								y={1}
+								href="https://www.instagram.com/ste16bit?igsh=a21uamRwcWF2cDIw&utm_source=qr"
+							/>
+							<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} href="https://twitter.com/ste_16bit" />
+							<IconDisplay icon="icons/linkedin.png" title="linkedin" x={0} y={5} href="https://www.linkedin.com/in/stefani-marchi/" />
+							<IconDisplay icon="icons/github.png" title="github" x={0} y={6} href="https://github.com/stefanimarchi" />
+							<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
 
-							<Terminal iconX={18} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
-							<Txt iconX={8} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
+							<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
+							<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
+							<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} />
 						</div>
+
 						<Clock />
-						<div className="shadow"></div>
 					</div>
 				</div>
 				<div className="computer-button-container">
@@ -80,7 +112,9 @@ function App() {
 					<button className="computer-button"></button>
 				</div>
 			</div>
+
 			<div className="computer-stand"></div>
+
 			<div className="computer-case">
 				<div className="computer-diskhat-container" style={{ height: "100%", width: "100%" }}>
 					<div className="computer-diskhat">
@@ -88,16 +122,19 @@ function App() {
 							<div className="computer-diskhat-input">
 								<div className="computer-diskhat-input-2"></div>
 							</div>
+
 							<div className="computer-diskhat-button-container" style={{ height: "100px", width: "300px", position: "absolute" }}>
 								<div className="computer-diskhat-button"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 				<div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", paddingTop: "30px" }}>
 					<div className="computer-turn-button-container">
 						<button className="computer-turn-button"></button>
 					</div>
+
 					<div className="computer-case-fans-container">
 						<img src="icons/fans.png" style={{ width: "279px", height: "80px" }}></img>
 					</div>
