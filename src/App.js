@@ -95,8 +95,7 @@ function App() {
 								href="https://www.instagram.com/ste16bit?igsh=a21uamRwcWF2cDIw&utm_source=qr"
 							/>
 							<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} href="https://twitter.com/ste_16bit" />
-							<IconDisplay icon="icons/linkedin.png" title="linkedin" x={0} y={5} href="https://www.linkedin.com/in/stefani-marchi/" />
-							<IconDisplay icon="icons/github.png" title="github" x={0} y={6} href="https://github.com/stefanimarchi" />
+							<IconDisplay icon="icons/github.png" title="github" x={0} y={5} href="https://github.com/stefani16bit" />
 							<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
 
 							<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />

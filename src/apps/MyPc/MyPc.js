@@ -1,11 +1,19 @@
 import React from "react";
+
 import AppCore from "../AppCore";
-import MyPcRenderer from "./MyPcRenderer";
+
+import MyPcConfigRenderer from "./Pages/MyPcConfigRenderer";
+import MyPcSetupRenderer from "./Pages/MyPcSetupRenderer";
+import MyPcSleeperRenderer from "./Pages/MyPcSleeperRenderer";
 
 const MyPc = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 	return (
 		<AppCore
-            AppRenderer={MyPcRenderer}
+			AppRenderer={{
+				config: MyPcConfigRenderer,
+				setup: MyPcSetupRenderer,
+				sleeper: MyPcSleeperRenderer,
+			}}
 			iconX={iconX}
 			iconY={iconY}
 			title="MyPc"
@@ -16,8 +24,10 @@ const MyPc = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 			topBarColor="#01009b"
 			titleColor="white"
 			ref={ref}
-            parentRef={parentRef}
-            overflowY="hidden"
+			parentRef={parentRef}
+			overflowY="hidden"
+			options={["config", "setup", "sleeper"]}
+			initialOption="config"
 		/>
 	);
 });

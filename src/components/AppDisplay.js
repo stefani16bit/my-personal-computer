@@ -2,11 +2,15 @@ import "./AppDisplay.css";
 
 import React, { useEffect, useRef } from "react";
 
+import PageWithOptions from "./PageWithOptions";
+
 import { useAppsManager } from "../context/AppsManagerContext";
 
 const AppDisplay = React.forwardRef(
 	(
 		{
+			appCoreRef,
+			AppRenderer,
 			title,
 			icon,
 			width,
@@ -24,7 +28,9 @@ const AppDisplay = React.forwardRef(
 			onTopBarDragEnd,
 			onTopBarDrag,
 			setDisplayRef,
-			overflowY = 'auto',
+			overflowY,
+			options,
+			initialOption,
 		},
 		ref
 	) => {
@@ -70,12 +76,16 @@ const AppDisplay = React.forwardRef(
 						<img src="icons/Exit.png" className="app-interface-top-bar-close-icon" onClick={onCloseButtonClick} />
 					</div>
 				</div>
-				<div className="app-txt-renderer-bar">
-					<a>File Edit Search Help</a>
-				</div>
-				<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 55}px`, overflow: "hidden", overflowY:{overflowY} }}>
-					{children}
-				</div>
+
+				{options ? (
+					<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 30}px`, overflow: `${overflowY}` }}>
+						<PageWithOptions appCoreRef={appCoreRef} AppRenderer={AppRenderer} options={options} initialOption={initialOption} appDisplayRef={ref} />
+					</div>
+				) : (
+					<div className="app-interface-content-container" style={{ width: "100%", height: `${height - 30 - (options ? 30 : 0)}px`, overflow: `${overflowY}` }}>
+						<AppRenderer appCoreRef={appCoreRef} />
+					</div>
+				)}
 			</div>
 		);
 	}

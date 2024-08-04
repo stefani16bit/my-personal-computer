@@ -18,6 +18,7 @@ const Txt = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 			titleColor="white"
 			ref={ref}
 			parentRef={parentRef}
+			overflowY="auto"
 		/>
 	);
 });

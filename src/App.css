@@ -1,3 +1,4 @@
+
 .main {
 	width: 100vw;
 	height: 100vh;
@@ -239,6 +240,7 @@
 
 @media (min-width: 1000px) {
 	.main {
-		transform: scale(1);
+		transform: scale(1.1);
 	}
 }
+
