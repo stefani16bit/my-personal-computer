@@ -220,6 +220,7 @@
 	right: 2px;
 }
 
+
 @media (min-width: 250px) {
 	.main {
 		transform: scale(0.25);

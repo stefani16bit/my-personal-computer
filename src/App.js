@@ -5,6 +5,7 @@ import "./App.css";
 import IconDisplay from "./components/IconDisplay";
 import Clock from "./components/Clock";
 import TaskBarAppDisplay from "./components/TaskBarAppDisplay";
+import Volume from "./components/Volume";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
@@ -53,7 +54,7 @@ function App() {
 	return (
 		<div className="main">
 			<div className="lock-computer-crt-container">
-				<img className="glitch-screen-effect" src="icons/glitch.png" />
+				<img className="glitch-screen-effect" src="icons/glitch.gif" />
 
 				<div className="shadow" />
 
@@ -104,6 +105,8 @@ function App() {
 						</div>
 
 						<Clock />
+						<Volume />
+						
 					</div>
 				</div>
 				<div className="computer-button-container">

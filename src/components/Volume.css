@@ -1,0 +1,31 @@
+.volume-icon-container {
+    display: flex;
+    width:800px;
+    height: 25px;
+    position: absolute;
+    justify-content: end;
+    align-items: center;
+    margin-top: 568px;
+    margin-left: -120px;
+}
+
+
+.volume-icon-container img{
+    width: 25px;
+    height: 25px;
+    
+}
+
+.volume-icon-container img:hover{
+    cursor: pointer;
+}
+
+.easter-egg{
+    height: 160px;
+    width: 160px;
+	display: flex;
+	position: absolute;
+    bottom: 30px;
+    left: 710px;
+
+}

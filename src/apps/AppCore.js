@@ -85,7 +85,7 @@ const AppCore = React.forwardRef(
 			targetX -= pinXOffset;
 			targetY -= pinYOffset;
 
-			if (targetX <= 0 || targetY <= 0 || targetX >= parentWidth - 20 || targetY >= parentHeight - 20) {
+			if (targetX <= 0 || targetY <= 0 || targetX >= parentWidth - 100 || targetY >= parentHeight - 80) {
 				return;
 			}
 
