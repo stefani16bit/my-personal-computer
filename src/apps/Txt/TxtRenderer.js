@@ -15,10 +15,10 @@ function TxtRenderer({ appCoreRef }) {
 			</div>
 
 			<div>
-				<a>interests:</a>
+				<br/>
 			</div>
 			<div>
-			programming, computer arch, crts, retro tech, astrophysics, antrophology, gaming, music, art, old anime, mecha, sushi, hack n' slash, horror movies, sci-fi, aliens, energy drinks 
+				I'm a very calm and lonely person, always trying to make the right things. Sometimes I can be tough, but this is a trait of my resilience.
 
 			</div>
 		</div>

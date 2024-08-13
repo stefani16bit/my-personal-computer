@@ -1,7 +1,6 @@
 .app-options-bar {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	justify-content: start;
 	position: sticky;
 	width: 100%;
@@ -17,15 +16,21 @@
 	align-items: center;
 	height: 25px;
 	background-color: #b1b1b1;
-	border: 1px outset #b9b9b9;
-	box-shadow: inset 1px 1px 1px 1px #e7e7e7;
+	border: 1px outset #b1b1b1;
+	
+	box-shadow: 
+		inset
+		2px 2px 1px 0px  rgba(228, 228, 228, 1.0), 
+		0px  2px  1px  0px  rgba(177,177,177,1.0),
+		0px  0px  0px  0px  rgba(177,177,177,1.0), 
+		-2px  0px  2px  0px  rgba(228, 228, 228, 1.0); 
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .app-options-button:active{
 	background-color: #b1b1b1;
-	border: 1px inset #8c8c8c;
+	border: 1px inset #696969;
 	font-weight: bold;
 	cursor: pointer;
 }
