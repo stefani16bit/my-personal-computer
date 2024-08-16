@@ -1,0 +1,49 @@
+{
+    "commands": {
+        "cls": {
+            "description": "Clean the terminal."
+        },
+        "echo": {
+            "description": "Print a command line."
+        },
+        "color": {
+            "description": "Change the terminal color."
+        },
+        "help": {
+            "description": "List all commands avaliable."
+        },
+        "ask": {
+            "description": "Ask any of the questions above.",
+            "dialog":[
+                {
+                    "message":"1. qual seu nome?",
+                    "answers":[
+                        {
+                            "message": "stefani"
+                        }
+                    ]
+                },
+                {
+                    "message":"2. qual sua idade?",
+                    "answers":[
+                        {
+                            "message": "22"
+                        }
+                    ]
+                },
+                {
+                    "message":"3. qm vc mais ama?",
+                    "answers":[
+                        {
+                            "message": "meu namorado"
+                        }
+                    ]
+                }
+            ]
+        },
+        "exit": {
+            "description": "Exit the terminal."
+        } 
+    }
+    
+}
