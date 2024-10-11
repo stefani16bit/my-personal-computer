@@ -3,9 +3,6 @@
         "cls": {
             "description": "Clean the terminal."
         },
-        "echo": {
-            "description": "Print a command line."
-        },
         "color": {
             "description": "Change the terminal color."
         },

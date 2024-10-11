@@ -20,19 +20,23 @@
 	background-color: black;
 	padding: 10px;
 	font-family: monospace;
-	min-height: 100vh;
+	overflow-y: auto;
+	height: 100%;
+	padding: 30px;
 }
 
 .terminal-input {
 	color: white;
 	background-color: transparent;
+	font-size: 16px;
 	border: none;
 	outline: none;
 	width: 100%;
-	font-family: monospace;
 	caret-color: white;
 	animation: blink-caret 1s step-end infinite;
+	line-height: 2;
 }
+
 
 @keyframes blink-caret {
 	from,
