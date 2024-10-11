@@ -96,7 +96,7 @@
 	height: 600px;
 	top: 52px;
 	z-index: 10000;
-	box-shadow: inset 0px 0px 50px 0 #361c32;
+	box-shadow: inset 0px 0px 50px 0 #182a43;
 	pointer-events: none;
 }
 
@@ -218,6 +218,13 @@
 	position: absolute;
 	gap: 5px;
 	right: 2px;
+}
+
+.screen-off-overlay {
+	width: 800px;
+	height: 600px;
+	display: flex;
+
 }
 
 

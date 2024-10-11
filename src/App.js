@@ -27,6 +27,8 @@ function App() {
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
 	const [isMyPcOpened, setIsMyPcOpened] = useState(false);
 
+	const [isScreenTurnedOn, setIsScreenTurnedOn] = useState(false);
+
 	const appsStateMap = {
 		termainal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
@@ -49,69 +51,76 @@ function App() {
 		return () => {
 			registeredStateListeners.forEach((removeListener) => removeListener());
 		};
-	}, [terminalRef, txtRef, myPcRef]);
+	}, [terminalRef, txtRef, myPcRef, isScreenTurnedOn]);
+
+	const handleToggleScreen = () => {
+		setIsScreenTurnedOn((prevState) => !prevState);
+	};
 
 	return (
 		<div className="main">
-			<div className="lock-computer-crt-container">
-				<img className="glitch-screen-effect" src="icons/glitch.gif" />
+			{!isScreenTurnedOn && (
+				<div className="lock-computer-crt-container">
+					<img className="glitch-screen-effect" src="icons/glitch.gif" />
+					<div className="shadow" />
+					<div className="lock-computer-screen-container" ref={appsDisplayParentRef}>
+						{isTerminalOpened ? terminalRef?.current?.render() : null}
+						{isTxtOpened ? txtRef?.current?.render() : null}
+						{isMyPcOpened ? myPcRef?.current?.render() : null}
+					</div>
 
-				<div className="shadow" />
-
-				<div className="lock-computer-screen-container" ref={appsDisplayParentRef}>
-					{isTerminalOpened ? terminalRef?.current?.render() : null}
-					{isTxtOpened ? txtRef?.current?.render() : null}
-					{isMyPcOpened ? myPcRef?.current?.render() : null}
+					<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
+						{openedApps.map((appRef) => {
+							return <TaskBarAppDisplay appRef={appRef} />;
+						})}
+					</div>
 				</div>
-
-				<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
-					{openedApps.map((appRef) => {
-						return <TaskBarAppDisplay appRef={appRef} />;
-					})}
-				</div>
-			</div>
+			)}
 
 			<div className="computer-crt-container">
 				<div className="computer-screen-container">
-					<div className="computer-screen">
-						<img className="computer-screen-background" src="icons/bg.png" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
-						<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
-							{/* {apps.map((app) => app.makeIcon())} */}
-							<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
-							<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6} />
-							<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={14.5} y={2} />
-							<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
-							<IconDisplay
-								icon="icons/spotify.png"
-								title="spotify"
-								x={0}
-								y={3}
-								href="https://open.spotify.com/user/22mrt5ov3taytdsgwmnfkmory?si=32b3f2cea68c4958"
-							/>
-							<IconDisplay
-								icon="icons/instagram.png"
-								title="instagram"
-								x={0}
-								y={1}
-								href="https://www.instagram.com/ste16bit?igsh=a21uamRwcWF2cDIw&utm_source=qr"
-							/>
-							<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} href="https://twitter.com/ste_16bit" />
-							<IconDisplay icon="icons/github.png" title="github" x={0} y={5} href="https://github.com/stefani16bit" />
-							<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
+					{!isScreenTurnedOn ? (
+						<div className="computer-screen">
+							<img className="computer-screen-background" src="icons/bgwinry.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
-							<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
-							<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
-							<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} />
+							<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
+								{/* {apps.map((app) => app.makeIcon())} */}
+								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
+								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6} />
+								<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={14.5} y={2} />
+								<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
+								<IconDisplay
+									icon="icons/spotify.png"
+									title="spotify"
+									x={0}
+									y={3}
+									href="https://open.spotify.com/user/22mrt5ov3taytdsgwmnfkmory?si=32b3f2cea68c4958"
+								/>
+								<IconDisplay
+									icon="icons/instagram.png"
+									title="instagram"
+									x={0}
+									y={1}
+									href="https://www.instagram.com/ste16bit?igsh=a21uamRwcWF2cDIw&utm_source=qr"
+								/>
+								<IconDisplay icon="icons/x.png" title="twitter" x={0} y={2} href="https://twitter.com/ste_16bit" />
+								<IconDisplay icon="icons/github.png" title="github" x={0} y={5} href="https://github.com/stefani16bit" />
+								<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
+
+								<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
+								<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
+								<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} />
+							</div>
+							<Clock />
+							<Volume />
 						</div>
-
-						<Clock />
-						<Volume />
-						
-					</div>
+					) : (
+						<div className="computer-screen" style={{backgroundColor:"black"}} />
+					)}
 				</div>
 				<div className="computer-button-container">
-					<div className="computer-button-light"></div>
-					<button className="computer-button"></button>
+					<div className="computer-button-light" style={!isScreenTurnedOn ? {} : {backgroundColor: "red", boxShadow:"0px 0px 25px 1px red"}}></div>
+					<button className="computer-button" onClick={handleToggleScreen}></button>
 				</div>
 			</div>
 
