@@ -11,8 +11,8 @@
 
 
 .volume-icon-container img{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     
 }
 
@@ -21,11 +21,11 @@
 }
 
 .easter-egg{
-    height: 160px;
-    width: 160px;
+    height: 95px;
+    width: 10px;
 	display: flex;
 	position: absolute;
     bottom: 30px;
-    left: 710px;
+    left: 730px;
 
 }
