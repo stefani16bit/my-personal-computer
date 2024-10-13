@@ -3,12 +3,14 @@ import React, { useState, useEffect, useRef, useImperativeHandle } from "react";
 import "./TerminalRenderer.css";
 
 import help from "./Commands/help";
+import ask from "./Commands/ask";
 import cls from "./Commands/cls";
 import color from "./Commands/color";
 import exit from "./Commands/exit";
 
 const commands = {
 	[help.name]: help,
+	[ask.name]: ask,
 	[cls.name]: cls,
 	[color.name]: color,
 	[exit.name]: exit,
