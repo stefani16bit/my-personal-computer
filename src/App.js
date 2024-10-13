@@ -62,6 +62,7 @@ function App() {
 			{!isScreenTurnedOn && (
 				<div className="lock-computer-crt-container">
 					<img className="glitch-screen-effect" src="icons/glitch.gif" />
+					<div className="out-light"/>
 					<div className="shadow" />
 					<div className="lock-computer-screen-container" ref={appsDisplayParentRef}>
 						{isTerminalOpened ? terminalRef?.current?.render() : null}
@@ -81,7 +82,7 @@ function App() {
 				<div className="computer-screen-container">
 					{!isScreenTurnedOn ? (
 						<div className="computer-screen">
-							<img className="computer-screen-background" src="icons/bgwinry.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
+							<img className="computer-screen-background" src="icons/bg1.jpg" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
 							<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
 								{/* {apps.map((app) => app.makeIcon())} */}
