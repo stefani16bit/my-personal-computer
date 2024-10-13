@@ -5,15 +5,17 @@ import "./TerminalRenderer.css";
 import help from "./Commands/help";
 import cls from "./Commands/cls";
 import color from "./Commands/color";
+import exit from "./Commands/exit";
 
 const commands = {
 	[help.name]: help,
 	[cls.name]: cls,
 	[color.name]: color,
+	[exit.name]: exit,
 };
 
 const DIRECTORY = "C:\\Users\\Stefani>";
-const COLORS = ["red", "lightgreen", "blue", "purple", "pink", "white", "yellow"];
+const COLORS = ["red", "green", "blue", "purple", "pink", "white", "yellow"];
 
 function TerminalRenderer({ appCoreRef }) {
 	const [terminalLog, setTerminalLog] = useState([]);
@@ -47,6 +49,8 @@ function TerminalRenderer({ appCoreRef }) {
 
 	useImperativeHandle(terminalRef, () => ({
 		ref: terminalInputRef,
+		appCoreRef: appCoreRef,
+		commands: commands,
 		clearTerminal: clearTerminal,
 		writeToTerminal: writeToTerminal,
 		setTerminalText: setTerminalText,
@@ -73,7 +77,7 @@ function TerminalRenderer({ appCoreRef }) {
 
 				const command = input.split(" ")[0];
 				if (command in commands) {
-					writeToTerminal(null, true, false)
+					writeToTerminal(null, true, false);
 					commands[command].exec(terminalRef, input);
 				} else {
 					writeToTerminal(`The provided command ${command} does not exist. Type /help to see the list of commands avaliable.`, true, true);
@@ -95,11 +99,16 @@ function TerminalRenderer({ appCoreRef }) {
 	return (
 		<div className="terminal-renderer-container">
 			{terminalLog.map((line, index) => (
-				<div style={{ color: inputColor }} key={index}>
+				<div style={{ color: inputColor, fontSize: "16px", lineHeight: "1.5" }} key={index}>
 					{line}
 				</div>
 			))}
-			<input className="terminal-input" ref={terminalInputRef} style={{ color: inputColor }}></input>
+			<div className="input-container">
+				<span className="fixed-text" style={{ color: inputColor }}>
+					{DIRECTORY}&nbsp;
+				</span>
+				<input className="terminal-input" ref={terminalInputRef} style={{ color: inputColor }}></input>
+			</div>
 		</div>
 	);
 }

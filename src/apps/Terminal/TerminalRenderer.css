@@ -22,7 +22,6 @@
 	font-family: monospace;
 	overflow-y: auto;
 	height: 100%;
-	padding: 30px;
 }
 
 .terminal-input {
@@ -34,9 +33,25 @@
 	width: 100%;
 	caret-color: white;
 	animation: blink-caret 1s step-end infinite;
-	line-height: 2;
+	margin: 0;
+	padding: 0;
 }
 
+.input-container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	font-family: monospace;
+	font-size: 16px;
+}
+
+.fixed-text {
+	color: white;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	line-height: 1.5;
+}
 
 @keyframes blink-caret {
 	from,
