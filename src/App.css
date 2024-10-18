@@ -42,20 +42,20 @@
 	width: 1000px;
 	height: 770px;
 	min-height: 770px;
-	background-color: gray;
+	background-color: rgb(205, 198, 179);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	border-radius: 5px;
-	box-shadow: inset 0px 2px 0px 8px #6b6b6b;
+	box-shadow: inset 0px 2px 0px 8px rgb(182, 175, 158);
 }
 .computer-screen {
 	width: 800px;
 	height: 600px;
 	display: flex;
 	border-radius: 2px;
-	border: 25px solid #8f8f8f;
+	border: 25px solid rgb(145, 137, 115);
 }
 
 .computer-button-container {
@@ -80,9 +80,10 @@
 
 .computer-button {
 	width: 80px;
-	background-color: #8f8f8f;
+	background-color: rgb(205, 198, 179);
 	border-radius: 3px;
-	box-shadow: inset 0px 0px 0px 8px #7c7c7c;
+	border-color: rgb(128, 123, 112);
+	box-shadow: inset 0px 0px 0px 8px rgb(172, 166, 150);
 }
 
 .computer-button:hover {
@@ -95,7 +96,7 @@
 	height: 600px;
 	top: 52px;
 	z-index: 10000;
-	box-shadow: inset 0px 0px 50px 0 #3a3a3a;
+	box-shadow: inset 0px 0px 50px 0 #1a3565;
 	pointer-events: none;
 }
 
@@ -115,8 +116,8 @@
 	min-height: 50px;
 	width: 500px;
 	border-radius: 150px 150px 0 0;
-	background-color: gray;
-	box-shadow: inset 0px 10px 1px 6px rgba(85, 85, 85, 0.5);
+	background-color: rgb(205, 198, 179);
+	box-shadow: inset 0px 10px 1px 6px rgb(145, 137, 115);
 }
 
 .computer-case {
@@ -124,17 +125,17 @@
 	height: 200px;
 	min-height: 200px;
 	width: 1000px;
-	background-color: gray;
+	background-color: rgb(205, 198, 179);
 	margin-top: 5px;
 	border-radius: 5px;
-	box-shadow: inset 0px 12px 0px 8px #6b6b6b;
+	box-shadow: inset 0px 12px 0px 8px rgb(172, 166, 150);
 }
 
 .computer-diskhat {
 	display: flex;
 	height: 100px;
 	width: 300px;
-	background-color: #9c9c9c;
+	background-color: rgb(182, 175, 158);
 	border-radius: 5px;
 	margin: 40px;
 	justify-content: center;
@@ -150,35 +151,35 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
-	border: 2px solid rgb(112, 112, 112);
-	box-shadow: inset 0px 8px 0px 0px #7e7e7e;
+	border: 2px solid rgb(145, 137, 115);
+	box-shadow: inset 0px 8px 0px 0px rgb(128, 123, 112);
 }
 
 .computer-diskhat-input {
 	display: flex;
 	height: 20px;
 	width: 250px;
-	background-color: #555555;
+	background-color: rgb(128, 123, 112);
 	border-radius: 5px;
 	justify-content: center;
 	align-items: center;
-	box-shadow: inset 0px 8px 0px 0px #474747;
+	box-shadow: inset 0px 8px 0px 0px rgb(101, 97, 88);
 }
 
 .computer-diskhat-input-2 {
 	display: flex;
 	height: 40px;
 	width: 80px;
-	background-color: #555555;
+	background-color: rgb(128, 123, 112);
 	border-radius: 5px;
-	box-shadow: inset 0px 8px 0px 0px #474747;
+	box-shadow: inset 0px 8px 0px 0px rgb(101, 97, 88);
 }
 
 .computer-diskhat-button {
 	display: flex;
 	height: 10px;
 	width: 40px;
-	background-color: #555555;
+	background-color: rgb(128, 123, 112);
 	border-radius: 2px;
 	position: absolute;
 	left: 250px;
@@ -193,10 +194,10 @@
 .computer-turn-button {
 	width: 50px;
 	height: 50px;
-	background-color: #8f8f8f;
-	border: 1px solid black;
+	background-color: rgb(205, 198, 179);
+	border: 1px solid rgb(119, 115, 104);
 	border-radius: 30px;
-	box-shadow: inset 0px 0px 0px 5px #7c7c7c;
+	box-shadow: inset 0px 0px 0px 5px rgb(172, 166, 150);
 	cursor: pointer;
 }
 
