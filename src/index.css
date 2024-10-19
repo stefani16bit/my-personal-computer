@@ -8,7 +8,7 @@ body {
 }
 
 * {
-	font-family: "Courier New", Courier, monospace, Menlo, Monaco, Consolas, "Courier New", monospace;
+	font-family: "Courier New", Courier, monospace, "Courier New", monospace;
 }
 
 ::-webkit-scrollbar {
