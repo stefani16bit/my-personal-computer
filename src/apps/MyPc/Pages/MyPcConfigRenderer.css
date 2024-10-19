@@ -1,3 +1,60 @@
-.banana {
-	color: yellow;
+.my-pc-renderer-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.my-pc-renderer-container-2 {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	background-color: #b1b1b1;
+	border: 1px outset #b9b9b9;
+	box-shadow: inset 1px 1px 1px 1px #e7e7e7;
+}
+
+.my-pc-info-father-container {
+	margin: 30px;
+}
+
+.my-pc-info-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.my-pc-info-container-2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.my-pc-title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.my-pc-renderer-title {
+	font-size: 30px;
+	text-align: right;
+	font-family: "Silkscreen", sans-serif;
+	font-weight: 400;
+}
+
+.my-pc-renderer-title-container {
+	display: flex;
+	width: 90%;
+}
+
+.my-pc-title2-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: right;
+}
+
+.my-pc-title-2 {
+	font-weight: bold;
 }
