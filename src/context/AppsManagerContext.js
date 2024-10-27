@@ -8,7 +8,6 @@ export const useAppsManager = () => {
 
 export function AppsManagerContextProvider({ children }) {
 	const [openedApps, setOpenedApps] = useState([]);
-
 	const [focusedApp, setFocusedApp] = useState(null);
 
 	function openApp(app) {

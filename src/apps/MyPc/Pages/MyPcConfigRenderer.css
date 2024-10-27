@@ -58,3 +58,10 @@
 .my-pc-title-2 {
 	font-weight: bold;
 }
+
+.my-pc-config-button-container {
+	display: flex;
+	justify-content: right;
+	width: 90%;
+
+}

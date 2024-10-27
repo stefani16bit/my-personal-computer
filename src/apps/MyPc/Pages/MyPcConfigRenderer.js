@@ -16,7 +16,7 @@ function MyPcConfigRenderer({ appRef }) {
 						</div>
 						<div className="my-pc-title2-container">
 							<a className="my-pc-title">Stefani</a>
-							<a>➧ INFJ ➧ She/Her ➧ Computer Science ➧ 22y ➧ Developer  </a>
+							<a>➧ INFJ ➧ She/Her ➧ Computer Science ➧ 22y ➧ Developer </a>
 						</div>
 					</div>
 					<div className="my-pc-info-container-2">
@@ -27,7 +27,9 @@ function MyPcConfigRenderer({ appRef }) {
 					</div>
 				</div>
 			</div>
-			<Button text={"Ok"} width={"70px"} height={"20px"} />
+			<div className="my-pc-config-button-container">
+				<Button text={"Continue"} width={"70px"} height={"20px"} />
+			</div>
 		</div>
 	);
 }

@@ -7,7 +7,7 @@ const questions = [
 
 module.exports = {
 	name: "ask",
-	description: "List of questions you can ask in the terminal.",
+	description: "List of questions you can ask in the terminal",
 	exec: (terminalRef, input) => {
 		if (input.trim() == "ask") {
 			for (let index = 0; index < questions.length; index++) {
