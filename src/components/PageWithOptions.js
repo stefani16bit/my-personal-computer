@@ -17,10 +17,11 @@ function PageWithOptions({ appCoreRef, AppRenderer, options, initialOption, appD
 				{options.map((option, index) => {
 					return (
 						<button
+							key={index}
 							onClick={makeOnOptionClickedHandler(option)}
 							className="app-options-button"
 							style={
-								currentOption == option
+								currentOption === option
 									? {
 											backgroundColor: "#b1b1b1",
 											borderBottom: "20px #b1b1b1",

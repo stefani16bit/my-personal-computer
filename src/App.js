@@ -26,7 +26,6 @@ function App() {
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
 	const [isMyPcOpened, setIsMyPcOpened] = useState(false);
-
 	const [isScreenTurnedOn, setIsScreenTurnedOn] = useState(false);
 
 	const appsStateMap = {
@@ -54,7 +53,13 @@ function App() {
 	}, [terminalRef, txtRef, myPcRef, isScreenTurnedOn]);
 
 	const handleToggleScreen = () => {
-		setIsScreenTurnedOn((prevState) => !prevState);
+		for (const app of openedApps) {
+			app.close();
+		}
+
+		setIsScreenTurnedOn((previousState) => {
+			return !previousState;
+		});
 	};
 
 	return (
@@ -62,7 +67,7 @@ function App() {
 			{!isScreenTurnedOn && (
 				<div className="lock-computer-crt-container">
 					<img className="glitch-screen-effect" src="icons/glitch.gif" />
-					<div className="out-light"/>
+					<div className="out-light" />
 					<div className="shadow" />
 					<div className="lock-computer-screen-container" ref={appsDisplayParentRef}>
 						{isTerminalOpened ? terminalRef?.current?.render() : null}
@@ -116,11 +121,11 @@ function App() {
 							<Volume />
 						</div>
 					) : (
-						<div className="computer-screen" style={{backgroundColor:"black"}} />
+						<div className="computer-screen" style={{ backgroundColor: "black" }} />
 					)}
 				</div>
 				<div className="computer-button-container">
-					<div className="computer-button-light" style={!isScreenTurnedOn ? {} : {backgroundColor: "red", boxShadow:"0px 0px 25px 1px red"}}></div>
+					<div className="computer-button-light" style={!isScreenTurnedOn ? {} : { backgroundColor: "red", boxShadow: "0px 0px 25px 1px red" }}></div>
 					<button className="computer-button" onClick={handleToggleScreen}></button>
 				</div>
 			</div>
