@@ -5,11 +5,14 @@ const questions = [
 	{ question: "What is your favorite food?", answer: "My favorite food is sushi." },
 ];
 
+const label = "type ask and the number. Ex: ask 1";
+
 module.exports = {
 	name: "ask",
 	description: "List of questions you can ask in the terminal",
 	exec: (terminalRef, input) => {
 		if (input.trim() == "ask") {
+			terminalRef.current.writeToTerminal(label, false, true);
 			for (let index = 0; index < questions.length; index++) {
 				terminalRef.current.writeToTerminal(`${index + 1}.${questions[index].question}`, false, false);
 			}
