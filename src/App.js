@@ -6,6 +6,7 @@ import IconDisplay from "./components/IconDisplay";
 import Clock from "./components/Clock";
 import TaskBarAppDisplay from "./components/TaskBarAppDisplay";
 import Volume from "./components/Volume";
+import Clippy from "./components/Clippy";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
@@ -87,7 +88,7 @@ function App() {
 				<div className="computer-screen-container">
 					{!isScreenTurnedOn ? (
 						<div className="computer-screen">
-							<img className="computer-screen-background" src="icons/bg1.jpg" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
+							<img className="computer-screen-background" src="icons/bg1.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
 							<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
 								{/* {apps.map((app) => app.makeIcon())} */}
@@ -119,6 +120,7 @@ function App() {
 							</div>
 							<Clock />
 							<Volume />
+							<Clippy />
 						</div>
 					) : (
 						<div className="computer-screen" style={{ backgroundColor: "black" }} />
