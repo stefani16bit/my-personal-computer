@@ -119,6 +119,7 @@ const AppCore = React.forwardRef(
 					});
 				},
 				close() {
+					appDisplayRef.current = null;
 					closeApp(ref.current);
 					callOnAppCoreOpenStateChangedListeners(false);
 					setIsOpened(false);
@@ -126,6 +127,7 @@ const AppCore = React.forwardRef(
 
 				minimize(state) {
 					appDisplayRef.current.style.display = state == true || appDisplayRef.current.style.display === "none" ? "block" : "none";
+					focusApp(appDisplayRef);
 				},
 
 				isOpened: isOpened,
