@@ -1,5 +1,4 @@
 const questions = [
-	{ question: "What is your name?", answer: "My name is Stefani." },
 	{ question: "How old are you?", answer: "I'm am 22 years old." },
 	{ question: "Where are you from?", answer: "I'm from São Paulo, Brazil." },
 	{ question: "What are your favorite subjects?", answer: "I could spend hours talking about anthropology and science." },
@@ -8,8 +7,9 @@ const questions = [
 	{ question: "What's your favorite food?", answer: "My favorite food is sushi." },
 	{ question: "What's your favorite drink?", answer: "Well... I really enjoy Redbull, but natural juices in general are amazing." },
 	{ question: "What's your favorite book?", answer: "Parallel Worlds by Michio Kaku, MANAIC by Benjamin Labatut and Cosmos by Carl Sagan." },
-	{ question: "What's your TV series?", answer: "Dark, Hannibal and Breaking Bad. ദ്ദി´▽`)" },
+	{ question: "What's your favorite TV series?", answer: "Dark, Hannibal and Breaking Bad. ദ്ദി´▽`)" },
 	{ question: "What's your biggest dream?", answer: "Make my mother truly happy one day." },
+	{ question: "A curiosity about you?", answer: "I learned graphic design when I was 13, during my free time on the internet, it was a way for me to express myself creatively, and I carry that with me to this day. You can see some of my work in my portfolio on behance (raikali) " },
 ];
 
 const label = "type ask and the number. Ex: ask 1";
