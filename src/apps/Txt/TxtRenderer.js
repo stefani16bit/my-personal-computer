@@ -1,25 +1,28 @@
-
 import "./TxtRenderer.css";
 
 function TxtRenderer({ appCoreRef }) {
 	return (
 		<div className="app-txt-renderer-container">
-			<h1>Hello!</h1>
-			<a>My name is Stefani, nice to meet you. I'm a 22 year old software developer, currently on my last year of Computer Science. </a>
-
+			This file is just in case you want to know a little bit more about me.
+			<div>
+				<br />
+			</div>
+			<a>
+				My name is Stefani, I'm a brazillian girl, currently on my last year of Computer Science. At the moment, I work remotely as a full-stack
+				developer at Thoughtworks.{" "}
+			</a>
 			<div className="app-txt-renderer-selfie">
-				<a>
-					I have a huge love for retro tech, including old computers, CRTs and games.
-				</a>
-				<img src="icons/selfie.jpg" style={{ width: "140px", height: "147px" }}></img>
-			</div>
-
-			<div>
-				<br/>
+				<a>I have a huge love for retro tech, including old computers, CRTs and videogames. I even own a sleeper pc.</a>
 			</div>
 			<div>
-				I'm a very calm and lonely person, always trying to make the right things. Sometimes I can be tough, but this is a trait of my resilience.
-
+				<br />
+			</div>
+			<div>
+				I'm a very calm, rational and lonely person, always trying to make the right things. Sometimes I can be tough and skeptical, but this is a trait of my resilience.
+				<div>
+					<br />
+				</div>
+				On my free time, I really like reading cientific books and playing video games, my favorite games are usually hack n' slash genre, like Devil May Cry 3 and Doom 2016 (btw I have a huge interest in programming games). I also love chess and cats.
 			</div>
 		</div>
 	);

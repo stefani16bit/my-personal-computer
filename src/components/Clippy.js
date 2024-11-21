@@ -7,9 +7,10 @@ function Clippy() {
 	const [clippyText, setClippyText] = useState("Hello, piece of human flesh.");
 
 	const textSequences = [
-		["oiii", 2],
-		["ti amo mozi", 7],
-		["vc quer namora comigo?", 9],
+		["When you die, you're just an innocuous lump of protein, nothing more.", 3],
+		["The omniscient truth of everything is nothing but one word, it is uncomprehensible.", 10],
+		["Anyway, don't mind me. I hope you like your visit here.", 16],
+		["Goodbye.", 20],
 	];
 
 	useEffect(() => {
@@ -23,11 +24,11 @@ function Clippy() {
 					setClippyText(text);
 				}, time * 1000);
 			}
-		}, 1000);
+		}, 5000);
 
 		const hideClippyTimeoutId = setTimeout(() => {
 			setIsClippyOpened(false);
-		}, 30000);
+		}, 27000);
 
 		return () => {
 			clearTimeout(textTimeoutId);

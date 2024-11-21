@@ -1,0 +1,18 @@
+.my-pc-title3-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: right;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.my-pc-setup-info-container {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.my-pc-info-father2-container{
+    display: flex;
+    margin: 20px;
+}

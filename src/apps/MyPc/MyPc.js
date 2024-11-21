@@ -16,7 +16,7 @@ const MyPc = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 			}}
 			iconX={iconX}
 			iconY={iconY}
-			title="MyPc"
+			title="myPc"
 			icon="icons/pc.png"
 			width={530}
 			height={450}

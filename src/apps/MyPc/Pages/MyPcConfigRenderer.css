@@ -15,7 +15,7 @@
 }
 
 .my-pc-info-father-container {
-	margin: 30px;
+	margin: 20px;
 }
 
 .my-pc-info-container {
@@ -32,8 +32,9 @@
 }
 
 .my-pc-title {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
+	font-family: "Silkscreen", sans-serif;
 }
 
 .my-pc-renderer-title {
@@ -56,7 +57,9 @@
 }
 
 .my-pc-title-2 {
+	font-size: 15px;
 	font-weight: bold;
+	font-family: "Silkscreen", sans-serif;
 }
 
 .my-pc-config-button-container {
