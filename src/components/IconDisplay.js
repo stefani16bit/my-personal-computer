@@ -17,7 +17,7 @@ function IconDisplay({ icon, title, href, x, y, onIconClicked }) {
 					flexDirection: "column",
 					textAlign: "center",
 					width: "50px",
-					height: "65px",
+					height: "50px",
 					left: `${xPosition}px`,
 					top: `${yPosition}px`,
 				}}
