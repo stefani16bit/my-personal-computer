@@ -55,21 +55,24 @@ function App() {
 	}, [terminalRef, txtRef, myPcRef, isScreenTurnedOn]);
 
 	useEffect(() => {
-		function onClick() {
-			const sound = new Audio("icons/click.mp3");
-			sound.play();
-			sound.remove();
+		function onClick({ x, y }) {
+			if (!computerScreenRef.current) {
+				return;
+			}
+			
+			const { top, left, width, height } = computerScreenRef.current.getBoundingClientRect();
+
+			if (x >= left && x <= left + width && y >= top && y <= top + height) {
+				const sound = new Audio("icons/click.mp3");
+				sound.play();
+				sound.remove();
+			}
 		}
 
-		const screenElement = computerScreenRef.current;
-		if (screenElement) {
-			screenElement.addEventListener("click", onClick);
-		}
+		document.addEventListener("click", onClick);
 
 		return () => {
-			if (screenElement) {
-				screenElement.removeEventListener("click", onClick);
-			}
+			document.removeEventListener("click", onClick);
 		};
 	}, []);
 
