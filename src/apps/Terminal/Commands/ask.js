@@ -18,7 +18,7 @@ module.exports = {
 	name: "ask",
 	description: "List of questions you can ask in the terminal",
 	exec: (terminalRef, input) => {
-		if (input.trim() == "ask") {
+		if (input.trim() === "ask") {
 			terminalRef.current.writeToTerminal(label, false, true);
 			for (let index = 0; index < questions.length; index++) {
 				terminalRef.current.writeToTerminal(`${index + 1}.${questions[index].question}`, false, false);

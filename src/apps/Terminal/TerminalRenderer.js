@@ -71,7 +71,7 @@ function TerminalRenderer({ appCoreRef }) {
 				}
 
 				const input = terminalInputRef.current.value;
-				if (input == "") {
+				if (input === "") {
 					return;
 				}
 

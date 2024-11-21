@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
+import React, { useImperativeHandle, useRef, useState } from "react";
 
 import IconsDisplay from "../components/IconDisplay";
 import AppDisplay from "../components/AppDisplay";
