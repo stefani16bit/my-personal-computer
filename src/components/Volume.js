@@ -10,7 +10,7 @@ function Volume() {
 	};
 
 	const onPlayerReady = (event) => {
-		event.target.setVolume(50);
+		event.target.setVolume(5);
 		event.target.playVideo();
 	};
 
@@ -19,9 +19,9 @@ function Volume() {
 			{isVolumeOn ? (
 				<>
 					<img className="volume-on-icon" onClick={toggleVolume} src="icons/volume-on.png" alt="Volume On" />
-					<YouTube videoId="" opts={{ width: "0", height: "0", playerVars: { autoplay: 1 } }} onReady={onPlayerReady} />
+					<YouTube videoId="o2dPCkh78qo" opts={{ width: "0", height: "0", playerVars: { autoplay: 0 } }} onReady={onPlayerReady} />
 					<div className="easter-egg">
-						<img src="icons/laindancing.gif" style={{ width: "160px", height: "160px" }}></img>
+						<img src="icons/laindancing.gif" style={{ width: "100px", height: "93px" }}></img>
 					</div>
 				</>
 			) : (
