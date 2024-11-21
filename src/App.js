@@ -23,6 +23,7 @@ function App() {
 	const terminalRef = useRef(null);
 	const txtRef = useRef(null);
 	const myPcRef = useRef(null);
+	const computerScreenRef = useRef(null);
 
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
@@ -53,6 +54,25 @@ function App() {
 		};
 	}, [terminalRef, txtRef, myPcRef, isScreenTurnedOn]);
 
+	useEffect(() => {
+		function onClick() {
+			const sound = new Audio("icons/click.mp3");
+			sound.play();
+			sound.remove();
+		}
+
+		const screenElement = computerScreenRef.current;
+		if (screenElement) {
+			screenElement.addEventListener("click", onClick);
+		}
+
+		return () => {
+			if (screenElement) {
+				screenElement.removeEventListener("click", onClick);
+			}
+		};
+	}, []);
+
 	const handleToggleScreen = () => {
 		for (const app of openedApps) {
 			app.close();
@@ -75,7 +95,6 @@ function App() {
 						{isTxtOpened ? txtRef?.current?.render() : null}
 						{isMyPcOpened ? myPcRef?.current?.render() : null}
 					</div>
-
 					<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
 						{openedApps.map((appRef) => {
 							return <TaskBarAppDisplay appRef={appRef} />;
@@ -87,13 +106,13 @@ function App() {
 			<div className="computer-crt-container">
 				<div className="computer-screen-container">
 					{!isScreenTurnedOn ? (
-						<div className="computer-screen">
+						<div className="computer-screen" ref={computerScreenRef}>
 							<img className="computer-screen-background" src="icons/bg1.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
 							<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
 								{/* {apps.map((app) => app.makeIcon())} */}
 								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
-								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6} />
+								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6.5} />
 								<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={14.5} y={2} />
 								<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
 								<IconDisplay
@@ -121,6 +140,20 @@ function App() {
 							<Clock />
 							<Volume />
 							<Clippy />
+							{/* Please, if you're going to copy at least give me credits.*/}
+							<div
+								style={{
+									display: "flex",
+									position: "absolute",
+									marginTop: "542px",
+									marginLeft: "10px",
+									fontSize: "12px",
+									fontWeight: "bold",
+									color: "white",
+								}}
+							>
+								stefani16bit ©
+							</div>
 						</div>
 					) : (
 						<div className="computer-screen" style={{ backgroundColor: "black" }} />
