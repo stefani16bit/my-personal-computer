@@ -1,0 +1,14 @@
+.mobile-disclaimer {
+	width: 100vw;
+	height: 100vh;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-disclaimer > span {
+	text-align: center;
+}
