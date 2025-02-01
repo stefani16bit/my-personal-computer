@@ -14,6 +14,10 @@ import MyPc from "./apps/MyPc/MyPc";
 
 import { useAppsManager } from "./context/AppsManagerContext";
 
+const DESKTOP_WIDTH = 800
+const DESKTOP_HEIGHT = 600
+const TASKBAR_HEIGHT = 38
+
 function App() {
 	const { openedApps } = useAppsManager();
 
@@ -112,7 +116,7 @@ function App() {
 						<div className="computer-screen" ref={computerScreenRef}>
 							<img className="computer-screen-background" src="icons/bg1.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
-							<div className="computer-screen-icons-container" style={{ position: "absolute", width: "800px", height: "600px" }}>
+							<div className="computer-screen-icons-container" style={{ position: "absolute", width: `${DESKTOP_HEIGHT}px`, height: `${DESKTOP_HEIGHT}px` }}>
 								{/* {apps.map((app) => app.makeIcon())} */}
 								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
 								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6.5} />
@@ -136,9 +140,9 @@ function App() {
 								<IconDisplay icon="icons/github.png" title="github" x={0} y={5} href="https://github.com/stefani16bit" />
 								<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
 
-								<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} />
-								<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} />
-								<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} />
+								<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
+								<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
+								<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
 							</div>
 							<Clock />
 							<Volume />

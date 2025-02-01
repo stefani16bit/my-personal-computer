@@ -5,8 +5,37 @@ import AppDisplay from "../components/AppDisplay";
 
 import { useAppsManager } from "../context/AppsManagerContext";
 
+function a(n, mn, mx) {
+	return Math.min(Math.max(0, (n - mn) / (mx - mn)), 1);
+}
+
+function p(a, mn, mx) {
+	return mn + a * (mx - mn);
+}
+
 const AppCore = React.forwardRef(
-	({ AppRenderer, iconX, iconY, title, icon, width, height, backgroundColor, topBarColor, titleColor, parentRef, overflowY, options, initialOption }, ref) => {
+	(
+		{
+			AppRenderer,
+			iconX,
+			iconY,
+			title,
+			icon,
+			width,
+			height,
+			backgroundColor,
+			topBarColor,
+			titleColor,
+			parentRef,
+			overflowY,
+			options,
+			initialOption,
+			desktopHeight,
+			desktopWidth,
+			taskbarHeight,
+		},
+		ref
+	) => {
 		const { openApp, closeApp, focusApp } = useAppsManager();
 
 		const [isOpened, setIsOpened] = useState(false);
@@ -41,30 +70,28 @@ const AppCore = React.forwardRef(
 		}
 
 		function getDragTargetPosition(screenX, screenY) {
-			const { x: appX, y: appY, left: appLeft, top: appTop } = appDisplayRef.current.getBoundingClientRect();
-			const { width: parentWidth, height: parentHeight, x: parentX, y: parentY, left: parentLeft, top: parentTop } = parentRef.current.getBoundingClientRect();
+			let { x: appX, y: appY, left: appLeft, top: appTop, width: appWidth, height: appHeight } = appDisplayRef.current.getBoundingClientRect();
+			let { left: parentLeft, right: parentRight, top: parentTop, bottom: parentBottom } = parentRef.current.getBoundingClientRect();
 
-			const targetX = screenX - parentWidth / 2;
-			const targetY = screenY - parentHeight / 2 - 30;
+			const targetX = p(a(screenX, parentLeft, parentRight), parentLeft, parentLeft + desktopWidth) - parentLeft;
+			const targetY = p(a(screenY, parentTop, parentBottom), parentTop, parentTop + (desktopHeight - taskbarHeight)) - parentTop;
 
 			return {
 				targetX,
 				targetY,
-				pinX: targetX - (parentX - appX) - (appLeft - parentLeft) * 2,
-				pinY: targetY - (parentY - appY) - (appTop - parentTop) * 2,
-				parentWidth,
-				parentHeight,
-				parentX,
-				parentY,
-				parentLeft,
-				parentTop,
+				appX,
+				appY,
+				appLeft,
+				appTop,
+				pinX: targetX - appDisplayRef.current.offsetLeft,
+				pinY: targetY - appDisplayRef.current.offsetTop,
 			};
 		}
 
 		function onAppDragBegin(event) {
 			focusApp(appDisplayRef);
 
-			const { pinX, pinY } = getDragTargetPosition(event.screenX, event.screenY);
+			const { pinX, pinY } = getDragTargetPosition(event.pageX, event.pageY);
 
 			pinXOffset = pinX;
 			pinYOffset = pinY;
@@ -81,19 +108,24 @@ const AppCore = React.forwardRef(
 				return;
 			}
 
-			let { targetX, targetY, parentWidth, parentHeight } = getDragTargetPosition(event.screenX, event.screenY);
-			targetX -= pinXOffset;
-			targetY -= pinYOffset;
-
-			if (targetX <= 0 || targetY <= 0 || targetX >= parentWidth - 100 || targetY >= parentHeight - 80) {
+			if (event.clientX === 0 && event.clientY === 0) {
 				return;
 			}
 
-			appDisplayRef.current.style.left = `${targetX}px`;
-			appDisplayRef.current.style.top = `${targetY}px`;
+			let { targetX, targetY } = getDragTargetPosition(event.pageX, event.pageY);
+
+			targetX -= pinXOffset;
+			targetY -= pinYOffset;
+
+			if (targetX < 0 || targetY < 0 || targetX > desktopWidth - 10 || targetY > desktopHeight - taskbarHeight - 10) {
+				return;
+			}
 
 			currentX.current = targetX;
 			currentY.current = targetY;
+
+			appDisplayRef.current.style.left = `${targetX}px`;
+			appDisplayRef.current.style.top = `${targetY}px`;
 		}
 
 		useImperativeHandle(
@@ -138,8 +170,8 @@ const AppCore = React.forwardRef(
 				render() {
 					{
 						const { width: parentWidth, height: parentHeight } = parentRef.current.getBoundingClientRect();
-						currentX.current = (parentWidth - width) / 2;
-						currentY.current = (parentHeight - height) / 2;
+						// currentX.current = (parentWidth - width) / 2;
+						// currentY.current = (parentHeight - height) / 2;
 					}
 
 					return (
