@@ -16,7 +16,9 @@ function MyPcSetupRenderer({ appRef }) {
                             AMD Ryzen 5 5600 
                             <br/>TUF Gaming B550M Plus 
                             <br/>32 GBytes RAM
-                            <br/>
+							<br/>1TB HD
+                            <br/>Watercooler Gamdias Aura 240mm
+							<br/>
                             SSD 1TB XPG S70 Blade, PCIe Gen4x4, M.2 NVMe,
 							7400MB/5500MB
 						</div>
@@ -31,8 +33,8 @@ function MyPcSetupRenderer({ appRef }) {
 			</div>
 			<div className="my-pc-renderer-container-2">
 				<div className="my-pc-info-father2-container">
-					<div className="my-pc-setup-info-container">Mouse Fallen Pantera Pro Headset Corsair Virtuoso</div>
-                    <div className="my-pc-setup-info-container">Keyboard RT100 Epomaker Mousepad Custom</div>
+					<div className="my-pc-setup-info-container">Mouse Fallen Pantera Pro Headset Corsair Virtuoso <br/>Monitor LG Ultrawide 34wr50qc-b</div>
+                    <div className="my-pc-setup-info-container">Keyboard RT100 Epomaker Mousepad Custom </div>
 				</div>
 			</div>
 		</div>

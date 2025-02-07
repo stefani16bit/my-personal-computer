@@ -3,7 +3,7 @@ import React from "react";
 import AppCore from "../AppCore";
 import TxtRenderer from "./TxtRenderer";
 
-const Txt = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
+const Txt = React.forwardRef(({ iconX, iconY, parentRef, ...others }, ref) => {
 	return (
 		<AppCore
 			AppRenderer={TxtRenderer}
@@ -19,6 +19,7 @@ const Txt = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 			ref={ref}
 			parentRef={parentRef}
 			overflowY="auto"
+			{...others}
 		/>
 	);
 });

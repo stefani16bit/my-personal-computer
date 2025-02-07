@@ -3,7 +3,7 @@ import React from "react";
 import AppCore from "../AppCore";
 import TerminalRenderer from "./TerminalRenderer";
 
-const Terminal = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
+const Terminal = React.forwardRef(({ iconX, iconY, parentRef, ...others }, ref) => {
 	return (
 		<AppCore
             AppRenderer={TerminalRenderer}
@@ -19,6 +19,7 @@ const Terminal = React.forwardRef(({ iconX, iconY, parentRef }, ref) => {
 			ref={ref}
             parentRef={parentRef}
 			overflowY="hidden"
+			{...others}
 		/>
 	);
 });
