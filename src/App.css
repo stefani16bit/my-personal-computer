@@ -241,6 +241,12 @@
 	display: flex;
 }
 
+.pop-ups-container {
+	position: absolute;
+	width: 800px;
+	height: 600px;
+}
+
 @media (max-height: 399px) {
 	.main {
 		scale: calc(var(--initial-scale) + var(--scale-multilier) * 1);

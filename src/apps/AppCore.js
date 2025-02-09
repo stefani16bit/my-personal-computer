@@ -36,20 +36,28 @@ const AppCore = React.forwardRef(
 		},
 		ref
 	) => {
-		const { openApp, closeApp, focusApp } = useAppsManager();
+		const { openApp, closeApp, focusApp, isFocused } = useAppsManager();
 
 		const [isOpened, setIsOpened] = useState(false);
+
+		let [canClose, setCanClose] = useState(true);
+		let [canMove, setCanMove] = useState(true);
 
 		const currentX = useRef(0);
 		const currentY = useRef(0);
 
 		const appDisplayRef = useRef(null);
+		const appRendererRef = useRef(null);
 
 		let pinXOffset = 0;
 		let pinYOffset = 0;
 
 		const onAppCoreOpenStateChangedListeners = [];
+		const onAppCoreFocusStateChangedListeners = [];
 
+		/**
+		 * OPEN STATE LISTENERS
+		 */
 		function addOnAppCoreOpenStateChangedListener(listener) {
 			onAppCoreOpenStateChangedListeners.push(listener);
 		}
@@ -65,12 +73,30 @@ const AppCore = React.forwardRef(
 			onAppCoreOpenStateChangedListeners.forEach((listener) => listener(isOpened));
 		}
 
+		/**
+		 * FOUCS STATE LISTENERS
+		 */
+		function addOnAppCoreFocusStateChangedListener(listener) {
+			onAppCoreFocusStateChangedListeners.push(listener);
+		}
+
+		function removeOnAppCoreFocusStateChangedListener(listenerToRemove) {
+			const index = onAppCoreFocusStateChangedListeners.indexOf(listenerToRemove);
+			if (index > -1) {
+				onAppCoreFocusStateChangedListeners.splice(index, 1);
+			}
+		}
+
+		function callOnAppCoreFocusStateChangedListeners(isFocused) {
+			onAppCoreFocusStateChangedListeners.forEach((listener) => listener(isFocused));
+		}
+
 		function onAppClick() {
 			focusApp(appDisplayRef);
 		}
 
 		function getDragTargetPosition(screenX, screenY) {
-			let { x: appX, y: appY, left: appLeft, top: appTop, width: appWidth, height: appHeight } = appDisplayRef.current.getBoundingClientRect();
+			let { x: appX, y: appY, left: appLeft, top: appTop } = appDisplayRef.current.getBoundingClientRect();
 			let { left: parentLeft, right: parentRight, top: parentTop, bottom: parentBottom } = parentRef.current.getBoundingClientRect();
 
 			const targetX = p(a(screenX, parentLeft, parentRight), parentLeft, parentLeft + desktopWidth) - parentLeft;
@@ -89,6 +115,10 @@ const AppCore = React.forwardRef(
 		}
 
 		function onAppDragBegin(event) {
+			if (!canMove) {
+				return;
+			}
+
 			focusApp(appDisplayRef);
 
 			const { pinX, pinY } = getDragTargetPosition(event.pageX, event.pageY);
@@ -104,6 +134,10 @@ const AppCore = React.forwardRef(
 		}
 
 		function onAppDrag(event) {
+			if (!canMove) {
+				return;
+			}
+
 			if (!appDisplayRef?.current || !parentRef?.current) {
 				return;
 			}
@@ -140,38 +174,86 @@ const AppCore = React.forwardRef(
 					};
 				},
 
+				onAppCoreFocusStateChanged(callback) {
+					addOnAppCoreFocusStateChangedListener(callback);
+					return () => {
+						removeOnAppCoreFocusStateChangedListener(callback);
+					};
+				},
+
+				isFocused() {
+					return isFocused(appDisplayRef);
+				},
+
 				open() {
 					focusApp(appDisplayRef);
 					openApp(ref.current);
 					callOnAppCoreOpenStateChangedListeners(true);
+					callOnAppCoreFocusStateChangedListeners(true);
 					setIsOpened(true);
 
 					requestAnimationFrame(() => {
 						ref.current.minimize(true);
 					});
 				},
+
 				close() {
+					if (!canClose) {
+						return;
+					}
+
 					appDisplayRef.current = null;
 					closeApp(ref.current);
 					callOnAppCoreOpenStateChangedListeners(false);
+					callOnAppCoreFocusStateChangedListeners(false);
 					setIsOpened(false);
 				},
 
 				minimize(state) {
+					if (!canClose) {
+						return;
+					}
+
+					if (!appDisplayRef.current) {
+						return;
+					}
+
 					appDisplayRef.current.style.display = state == true || appDisplayRef.current.style.display === "none" ? "block" : "none";
 					focusApp(appDisplayRef);
 				},
 
+				setCanCloseApp(canCloseApp) {
+					setCanClose(canCloseApp);
+					canClose = canCloseApp;
+				},
+
+				setCanMoveApp(canMoveApp) {
+					setCanMove(canMoveApp);
+					canMove = canMoveApp;
+				},
+
+				setAppRendererRef(ref) {
+					appRendererRef.current = ref;
+				},
+
+				getAppRendererRef() {
+					return appRendererRef;
+				},
+
 				isOpened: isOpened,
+
+				canClose: canClose,
+				canMove: canMove,
 
 				currentX: currentX,
 				currentY: currentY,
 
+				appDisplayRef: appDisplayRef,
+
 				render() {
 					{
-						const { width: parentWidth, height: parentHeight } = parentRef.current.getBoundingClientRect();
-						// currentX.current = (parentWidth - width) / 2;
-						// currentY.current = (parentHeight - height) / 2;
+						currentX.current = (desktopWidth - width) / 2;
+						currentY.current = (desktopHeight - height) / 2;
 					}
 
 					return (

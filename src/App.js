@@ -7,19 +7,23 @@ import Clock from "./components/Clock";
 import TaskBarAppDisplay from "./components/TaskBarAppDisplay";
 import Volume from "./components/Volume";
 import Clippy from "./components/Clippy";
+import PopUp from "./components/PopUp";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
 import MyPc from "./apps/MyPc/MyPc";
+import Doom from "./apps/Doom/Doom";
 
 import { useAppsManager } from "./context/AppsManagerContext";
+import { usePopUpsManager } from "./context/PopUpsManagerContext";
 
-const DESKTOP_WIDTH = 800
-const DESKTOP_HEIGHT = 600
-const TASKBAR_HEIGHT = 38
+const DESKTOP_WIDTH = 800;
+const DESKTOP_HEIGHT = 600;
+const TASKBAR_HEIGHT = 38;
 
 function App() {
 	const { openedApps } = useAppsManager();
+	const { openedPopUps } = usePopUpsManager();
 
 	const appsDisplayParentRef = useRef(null);
 	const appsTaskBarParentRef = useRef(null);
@@ -27,17 +31,20 @@ function App() {
 	const terminalRef = useRef(null);
 	const txtRef = useRef(null);
 	const myPcRef = useRef(null);
+	const doomRef = useRef(null);
 	const computerScreenRef = useRef(null);
 
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
 	const [isMyPcOpened, setIsMyPcOpened] = useState(false);
 	const [isScreenTurnedOn, setIsScreenTurnedOn] = useState(false);
+	const [isDoomOpened, setIsDoomOpened] = useState(false);
 
 	const appsStateMap = {
 		termainal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
 		mypc: { ref: myPcRef, isOpened: isMyPcOpened, setIsOpened: setIsMyPcOpened },
+		doom: { ref: doomRef, isOpened: isDoomOpened, setIsOpened: setIsDoomOpened },
 	};
 
 	useEffect(() => {
@@ -56,14 +63,14 @@ function App() {
 		return () => {
 			registeredStateListeners.forEach((removeListener) => removeListener());
 		};
-	}, [terminalRef, txtRef, myPcRef, isScreenTurnedOn]);
+	}, [terminalRef, txtRef, myPcRef, doomRef, isScreenTurnedOn]);
 
 	useEffect(() => {
 		function onClick({ x, y }) {
 			if (!computerScreenRef.current) {
 				return;
 			}
-			
+
 			const { top, left, width, height } = computerScreenRef.current.getBoundingClientRect();
 
 			if (x >= left && x <= left + width && y >= top && y <= top + height) {
@@ -101,6 +108,7 @@ function App() {
 						{isTerminalOpened ? terminalRef?.current?.render() : null}
 						{isTxtOpened ? txtRef?.current?.render() : null}
 						{isMyPcOpened ? myPcRef?.current?.render() : null}
+						{isDoomOpened ? doomRef?.current?.render() : null}
 					</div>
 					<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
 						{openedApps.map((appRef) => {
@@ -114,9 +122,18 @@ function App() {
 				<div className="computer-screen-container">
 					{!isScreenTurnedOn ? (
 						<div className="computer-screen" ref={computerScreenRef}>
+							<div className="pop-ups-container">
+								{Object.values(openedPopUps).map((popUp) => {
+									return popUp[1];
+								})}
+							</div>
+
 							<img className="computer-screen-background" src="icons/bg1.gif" style={{ width: "100%", height: "100%", overflow: "hidden" }} />
 
-							<div className="computer-screen-icons-container" style={{ position: "absolute", width: `${DESKTOP_HEIGHT}px`, height: `${DESKTOP_HEIGHT}px` }}>
+							<div
+								className="computer-screen-icons-container"
+								style={{ position: "absolute", width: `${DESKTOP_HEIGHT}px`, height: `${DESKTOP_HEIGHT}px` }}
+							>
 								{/* {apps.map((app) => app.makeIcon())} */}
 								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
 								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6.5} />
@@ -140,9 +157,42 @@ function App() {
 								<IconDisplay icon="icons/github.png" title="github" x={0} y={5} href="https://github.com/stefani16bit" />
 								<IconDisplay icon="icons/steam.png" title="steam" x={0} y={4} href="https://steamcommunity.com/profiles/76561198316392663" />
 
-								<Terminal iconX={14.5} iconY={0} ref={terminalRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
-								<Txt iconX={3} iconY={3} ref={txtRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
-								<MyPc iconX={14.5} iconY={1} ref={myPcRef} parentRef={appsDisplayParentRef} desktopWidth={DESKTOP_WIDTH} desktopHeight={DESKTOP_HEIGHT} taskbarHeight={TASKBAR_HEIGHT} />
+								<Terminal
+									iconX={14.5}
+									iconY={0}
+									ref={terminalRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
+								/>
+								<Txt
+									iconX={3}
+									iconY={3}
+									ref={txtRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
+								/>
+								<MyPc
+									iconX={14.5}
+									iconY={1}
+									ref={myPcRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
+								/>
+								<Doom
+									iconX={10.5}
+									iconY={3}
+									ref={doomRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
+								/>
 							</div>
 							<Clock />
 							<Volume />

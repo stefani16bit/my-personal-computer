@@ -7,8 +7,8 @@ export const useAppsManager = () => {
 };
 
 export function AppsManagerContextProvider({ children }) {
-	const [openedApps, setOpenedApps] = useState([]);
-	const [focusedApp, setFocusedApp] = useState(null);
+	let [openedApps, setOpenedApps] = useState([]);
+	let [focusedApp, setFocusedApp] = useState(null);
 
 	function openApp(app) {
 		setOpenedApps((previousApps) => {
@@ -24,13 +24,23 @@ export function AppsManagerContextProvider({ children }) {
 		setOpenedApps((previousApps) => previousApps.filter((openedApp) => openedApp !== app));
 	}
 
+	function isFocused(app) {
+		return focusedApp === app;
+	}
+
 	function focusApp(app) {
 		setFocusedApp(app);
+		focusedApp = app;
 	}
 
 	function unfocusApp() {
 		setFocusedApp(null);
+		focusedApp = null;
 	}
 
-	return <AppsManagerContext.Provider value={{ openApp, closeApp, focusApp, unfocusApp, openedApps, focusedApp }}>{children}</AppsManagerContext.Provider>;
+	return (
+		<AppsManagerContext.Provider value={{ openApp, closeApp, isFocused, focusApp, unfocusApp, openedApps, focusedApp }}>
+			{children}
+		</AppsManagerContext.Provider>
+	);
 }
