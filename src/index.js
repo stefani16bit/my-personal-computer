@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { AppsManagerContextProvider } from "./context/AppsManagerContext";
 import MobileDisclaimer from "./components/MobileDisclaimer";
+import { PopUpsManagerContextProvider } from "./context/PopUpsManagerContext";
 
 window.mobileCheck = function () {
 	let check = false;
@@ -27,7 +28,9 @@ window.mobileCheck = function () {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<AppsManagerContextProvider>{window.mobileCheck() ? <MobileDisclaimer /> : <App />}</AppsManagerContextProvider>
+		<AppsManagerContextProvider>
+			<PopUpsManagerContextProvider>{window.mobileCheck() ? <MobileDisclaimer /> : <App />}</PopUpsManagerContextProvider>
+		</AppsManagerContextProvider>
 	</React.StrictMode>
 );
 
