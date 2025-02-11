@@ -136,8 +136,8 @@ function App() {
 							>
 								{/* {apps.map((app) => app.makeIcon())} */}
 								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
-								<IconDisplay icon="icons/bin.png" title="lixeira" x={14.5} y={6.5} />
-								<IconDisplay icon="icons/windows-folder.png" title="pastinha" x={14.5} y={2} />
+								<IconDisplay icon="icons/bin.png" title="bin" x={14.5} y={6.5} />
+								<IconDisplay icon="icons/windows-folder.png" title="folder" x={14.5} y={2} />
 								<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
 								<IconDisplay
 									icon="icons/spotify.png"
@@ -185,8 +185,8 @@ function App() {
 									taskbarHeight={TASKBAR_HEIGHT}
 								/>
 								<Doom
-									iconX={10.5}
-									iconY={3}
+									iconX={13}
+									iconY={1}
 									ref={doomRef}
 									parentRef={appsDisplayParentRef}
 									desktopWidth={DESKTOP_WIDTH}
