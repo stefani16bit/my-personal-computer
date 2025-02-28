@@ -7,6 +7,7 @@ import ask from "./Commands/ask";
 import cls from "./Commands/cls";
 import color from "./Commands/color";
 import exit from "./Commands/exit";
+import { useAppsManager } from "../../context/AppsManagerContext";
 
 const commands = {
 	[help.name]: help,
@@ -20,6 +21,8 @@ const DIRECTORY = "C:\\Users\\Stefani>";
 const COLORS = ["red", "green", "blue", "purple", "pink", "white", "yellow"];
 
 function TerminalRenderer({ appCoreRef }) {
+	const { focusedApp } = useAppsManager();
+
 	const [terminalLog, setTerminalLog] = useState([]);
 	const [inputColor, setInputColor] = useState("white");
 
@@ -66,15 +69,15 @@ function TerminalRenderer({ appCoreRef }) {
 	useEffect(() => {
 		if (terminalInputRef.current) {
 			function onKeyDown(event) {
+				if (focusedApp?.current == appCoreRef?.current?.appDisplayRef?.current) {
+					return;
+				}
+
 				if (event.key != "Enter") {
 					return;
 				}
 
 				const input = terminalInputRef.current.value;
-				if (input === "") {
-					return;
-				}
-
 				terminalInput.current = input;
 
 				const command = input.split(" ")[0];
@@ -88,10 +91,10 @@ function TerminalRenderer({ appCoreRef }) {
 				setTerminalText();
 			}
 
-			window.addEventListener("keydown", onKeyDown);
-
+			// Focus the terminal input when the terminal is opened
 			terminalInputRef.current.focus();
 
+			window.addEventListener("keydown", onKeyDown, true);
 			return () => {
 				window.removeEventListener("keydown", onKeyDown);
 			};
@@ -105,6 +108,7 @@ function TerminalRenderer({ appCoreRef }) {
 					{line}
 				</div>
 			))}
+
 			<div className="input-container">
 				<span className="fixed-text" style={{ color: inputColor }}>
 					{DIRECTORY}&nbsp;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import AppCore from "../AppCore";
-import DoomRenderer from "./DoomRenderer";
+import DoomRenderer from "./DoomRenderer.js";
 
 const Doom = React.forwardRef(({ iconX, iconY, parentRef, ...others }, ref) => {
 	return (
