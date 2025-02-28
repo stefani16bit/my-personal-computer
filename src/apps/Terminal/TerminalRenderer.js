@@ -29,6 +29,7 @@ function TerminalRenderer({ appCoreRef }) {
 	const terminalInput = useRef();
 	const terminalRef = useRef();
 	const terminalInputRef = useRef();
+	const terminalContainerRef = useRef();
 
 	function clearTerminal() {
 		setTerminalLog(["type /help to see all commands avaliable."]);
@@ -67,12 +68,12 @@ function TerminalRenderer({ appCoreRef }) {
 	}, []);
 
 	useEffect(() => {
+		terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+	}, [terminalLog]);
+
+	useEffect(() => {
 		if (terminalInputRef.current) {
 			function onKeyDown(event) {
-				if (focusedApp?.current == appCoreRef?.current?.appDisplayRef?.current) {
-					return;
-				}
-
 				if (event.key != "Enter") {
 					return;
 				}
@@ -94,7 +95,7 @@ function TerminalRenderer({ appCoreRef }) {
 			// Focus the terminal input when the terminal is opened
 			terminalInputRef.current.focus();
 
-			window.addEventListener("keydown", onKeyDown, true);
+			window.addEventListener("keydown", onKeyDown);
 			return () => {
 				window.removeEventListener("keydown", onKeyDown);
 			};
@@ -102,7 +103,7 @@ function TerminalRenderer({ appCoreRef }) {
 	}, [terminalInputRef]);
 
 	return (
-		<div className="terminal-renderer-container">
+		<div className="terminal-renderer-container" ref={terminalContainerRef}>
 			{terminalLog.map((line, index) => (
 				<div style={{ color: inputColor, fontSize: "16px", lineHeight: "1.5" }} key={index}>
 					{line}
