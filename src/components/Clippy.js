@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 
 function Clippy() {
 	const [isClippyOpened, setIsClippyOpened] = useState(false);
-	const [clippyText, setClippyText] = useState("Hello, piece of human flesh.");
+	const [clippyText, setClippyText] = useState("Hello human!");
 
 	const textSequences = [
-		["When you die, you're just an innocuous lump of protein, nothing more.", 3],
-		["The omniscient truth of everything is nothing but one word, it is uncomprehensible.", 10],
-		["Anyway, don't mind me. I hope you like your visit here.", 16],
-		["Goodbye.", 20],
+		["This page was made by me (stefani16bit if you guess).", 3],
+		["You can check this project on my github page.", 6],
+		["Anyway, don't mind me. I hope you like your visit here.", 12],
+		["Goodbye.", 13],
 	];
 
 	useEffect(() => {
