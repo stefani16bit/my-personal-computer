@@ -1,0 +1,73 @@
+.browser-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: brown;
+    flex-direction: column;
+}
+
+.browser-top-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: #b1b1b1;
+    height: 60px;
+}
+
+.browser-header-container {
+    display: flex;
+    width: 100%;
+    height: 25px;
+    background-color: #b1b1b1;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.bar {
+    display: flex;
+    width: 4px;
+    height: 14px;
+    background-color: #d6d6d6;
+}
+
+.browser-header-container > a {
+    font-size: 11px;
+}
+
+.browser-address-container {
+    display: flex;
+    width: 100%;
+    height: 25px;
+    background-color: #b1b1b1;
+    font-size: 11px;
+    column-gap: 10px;
+    align-items: center;
+}
+.browser-address-field {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    background-color: white;
+    border: none;
+    font-size: 11px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.browser-address-field > a {
+    padding: 0 5px;
+}
+
+.browser-content-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.browser-bottom-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}

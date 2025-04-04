@@ -16,6 +16,7 @@ import Doom from "./apps/Doom/Doom";
 
 import { useAppsManager } from "./context/AppsManagerContext";
 import { usePopUpsManager } from "./context/PopUpsManagerContext";
+import Browser from "./apps/Browser/Browser";
 
 const DESKTOP_WIDTH = 800;
 const DESKTOP_HEIGHT = 600;
@@ -33,18 +34,21 @@ function App() {
 	const myPcRef = useRef(null);
 	const doomRef = useRef(null);
 	const computerScreenRef = useRef(null);
+	const browserRef = useRef(null);
 
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
 	const [isMyPcOpened, setIsMyPcOpened] = useState(false);
 	const [isScreenTurnedOn, setIsScreenTurnedOn] = useState(false);
 	const [isDoomOpened, setIsDoomOpened] = useState(false);
+	const [isBrowserOpened, setIsBrowserOpened] = useState(false);
 
 	const appsStateMap = {
 		termainal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
 		mypc: { ref: myPcRef, isOpened: isMyPcOpened, setIsOpened: setIsMyPcOpened },
 		doom: { ref: doomRef, isOpened: isDoomOpened, setIsOpened: setIsDoomOpened },
+		browser: { ref: browserRef, isOpened: isBrowserOpened, setIsOpened: setIsBrowserOpened },
 	};
 
 	useEffect(() => {
@@ -63,7 +67,7 @@ function App() {
 		return () => {
 			registeredStateListeners.forEach((removeListener) => removeListener());
 		};
-	}, [terminalRef, txtRef, myPcRef, doomRef, isScreenTurnedOn]);
+	}, [terminalRef, txtRef, myPcRef, doomRef, isScreenTurnedOn, browserRef]);
 
 	useEffect(() => {
 		function onClick({ x, y }) {
@@ -109,6 +113,7 @@ function App() {
 						{isTxtOpened ? txtRef?.current?.render() : null}
 						{isMyPcOpened ? myPcRef?.current?.render() : null}
 						{isDoomOpened ? doomRef?.current?.render() : null}
+						{isBrowserOpened ? browserRef?.current?.render() : null}
 					</div>
 					<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
 						{openedApps.map((appRef) => {
@@ -135,7 +140,15 @@ function App() {
 								style={{ position: "absolute", width: `${DESKTOP_HEIGHT}px`, height: `${DESKTOP_HEIGHT}px` }}
 							>
 								{/* {apps.map((app) => app.makeIcon())} */}
-								<IconDisplay icon="icons/explorer.png" title="internet" x={0} y={0} />
+								<Browser 
+								iconX={0}
+								iconY={0}
+								ref={browserRef}
+								parentRef={appsDisplayParentRef}
+								desktopWidth={DESKTOP_WIDTH}
+								desktopHeight={DESKTOP_HEIGHT}
+								taskbarHeight={TASKBAR_HEIGHT}
+								/>
 								<IconDisplay icon="icons/bin.png" title="bin" x={14.5} y={6.5} />
 								<IconDisplay icon="icons/windows-folder.png" title="folder" x={14.5} y={2} />
 								<IconDisplay icon="icons/mp4.png" title="0x.mp4" x={14.5} y={3} />
