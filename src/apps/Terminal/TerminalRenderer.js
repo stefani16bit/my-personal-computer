@@ -64,7 +64,7 @@ function TerminalRenderer({ appCoreRef }) {
 	}));
 
 	useEffect(() => {
-		setTerminalLog(["type /help to see all commands avaliable."]);
+		setTerminalLog(["type /help to see all commands available."]);
 	}, []);
 
 	useEffect(() => {
@@ -86,7 +86,7 @@ function TerminalRenderer({ appCoreRef }) {
 					writeToTerminal(null, true, false);
 					commands[command].exec(terminalRef, input);
 				} else {
-					writeToTerminal(`The provided command ${command} does not exist. Type /help to see the list of commands avaliable.`, true, true);
+					writeToTerminal(`The provided command ${command} does not exist. Type /help to see the list of commands available.`, true, true);
 				}
 
 				setTerminalText();
