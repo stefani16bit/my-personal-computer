@@ -1,4 +1,5 @@
 import "./BrowserRenderer.css";
+import "./../../components/Button.css";
 
 function BrowserRenderer({ appCoreRef }) {
 	return (
@@ -14,17 +15,20 @@ function BrowserRenderer({ appCoreRef }) {
 					<a>Tools</a>
 					<a>Help</a>
 				</div>
+				<div className="divisor"></div>
 				<div className="browser-address-container">
 					<div className="bar"></div>
 					<a>Address</a>
 					<div className="browser-address-field">
-						<a>https://github.com/stefani16bit</a>
-						<button>v</button>
+						<a>https://justaurl.com</a>
+						<button type="button" className="windows-button" style={{width: "18px"}}>▾</button>
 					</div>
 				</div>
 			</div>
 			<div className="browser-bottom-container">
-				<div className="browser-content">alguma coisa</div>
+				<div className="browser-content">
+				<iframe src="https://cat-bounce.com/" width="100%" height="100%"></iframe>
+				</div>
 			</div>
 		</div>
 	);

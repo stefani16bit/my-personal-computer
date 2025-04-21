@@ -18,7 +18,7 @@ const Browser = React.forwardRef(({ iconX, iconY, parentRef, ...others }, ref) =
 			titleColor="white"
 			ref={ref}
 			parentRef={parentRef}
-			overflowY="auto"
+			overflowY="hidden"
 			{...others}
 		/>
 	);

@@ -10,7 +10,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    background-color: #b1b1b1;
+    background-color: #cbcbcb;
     height: 60px;
 }
 
@@ -18,9 +18,11 @@
     display: flex;
     width: 100%;
     height: 25px;
-    background-color: #b1b1b1;
+    background-color: #cbcbcb;
     column-gap: 10px;
     align-items: center;
+    border: 1px outset #b9b9b9;
+    box-shadow: inset 1px 1px 1px 1px #e7e7e7
 }
 
 .bar {
@@ -28,6 +30,9 @@
     width: 4px;
     height: 14px;
     background-color: #d6d6d6;
+    border: 1px outset #b9b9b9;
+    box-shadow: inset 1px 1px 1px 1px #e7e7e7;
+    margin-left: 5px;
 }
 
 .browser-header-container > a {
@@ -38,10 +43,12 @@
     display: flex;
     width: 100%;
     height: 25px;
-    background-color: #b1b1b1;
+    background-color: #cbcbcb;
     font-size: 11px;
     column-gap: 10px;
     align-items: center;
+    border: 1px outset #b9b9b9;
+    box-shadow: inset 1px 1px 1px 1px #e7e7e7
 }
 .browser-address-field {
     display: flex;
@@ -65,9 +72,28 @@
     background-color: white;
 }
 
+.browser-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
 .browser-bottom-container {
     display: flex;
     width: 100%;
     height: 100%;
     background-color: white;
+}
+
+.divisor {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color:#ffffff ;
+}
+
+
+.browser-header-container > a::first-letter {
+    text-decoration: underline;
 }
