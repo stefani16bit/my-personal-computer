@@ -20,7 +20,7 @@ const MyPc = React.forwardRef(({ iconX, iconY, parentRef, ...others }, ref) => {
 			icon="icons/pc.png"
 			width={530}
 			height={450}
-			backgroundColor="#b1b1b1"
+			backgroundColor="#cbcbcb"
 			topBarColor="#01009b"
 			titleColor="white"
 			ref={ref}

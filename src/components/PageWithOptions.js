@@ -23,8 +23,8 @@ function PageWithOptions({ appCoreRef, AppRenderer, options, initialOption, appD
 							style={
 								currentOption === option
 									? {
-											backgroundColor: "#b1b1b1",
-											borderBottom: "20px #b1b1b1",
+											backgroundColor: "#cbcbcb",
+											borderBottom: "20px #cbcbcb",
 											zIndex: 50000,
 											height: "28px",
 									  }

@@ -6,30 +6,25 @@
 	width: 100%;
 	height: 25px;
 	margin-top: 5px;
-	background-color: #b1b1b1;
+	background-color: #cbcbcb;
 	font-size: 15px;
-    
 }
 
-.app-options-button{
+.app-options-button {
 	display: flex;
 	align-items: center;
 	height: 25px;
-	background-color: #b1b1b1;
-	border: 1px outset #b1b1b1;
-	
-	box-shadow: 
-		inset
-		2px 2px 1px 0px  rgba(228, 228, 228, 1.0), 
-		0px  2px  1px  0px  rgba(177,177,177,1.0),
-		0px  0px  0px  0px  rgba(177,177,177,1.0), 
-		-2px  0px  2px  0px  rgba(228, 228, 228, 1.0); 
+	background-color: #cbcbcb;
+	border: 1px outset #cbcbcb;
+
+	box-shadow: inset 2px 2px 1px 0px rgba(228, 228, 228, 1), 0px 2px 1px 0px rgba(177, 177, 177, 1), 0px 0px 0px 0px rgba(177, 177, 177, 1),
+		-2px 0px 2px 0px rgba(228, 228, 228, 1);
 	font-weight: bold;
 	cursor: pointer;
 }
 
-.app-options-button:active{
-	background-color: #b1b1b1;
+.app-options-button:active {
+	background-color: #cbcbcb;
 	border: 1px inset #696969;
 	font-weight: bold;
 	cursor: pointer;

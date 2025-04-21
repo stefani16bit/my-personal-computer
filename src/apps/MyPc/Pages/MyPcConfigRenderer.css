@@ -9,7 +9,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 90%;
-	background-color: #b1b1b1;
+	background-color: #cbcbcb;
 	border: 1px outset #b9b9b9;
 	box-shadow: inset 1px 1px 1px 1px #e7e7e7;
 }
@@ -66,5 +66,4 @@
 	display: flex;
 	justify-content: right;
 	width: 90%;
-
 }

@@ -1,29 +1,29 @@
-.app-interface-container{
-    z-index: 2000;
-    border: 3px solid #b1b1b1;
+.app-interface-container {
+	z-index: 2000;
+	border: 3px solid #cbcbcb;
 	box-shadow: 0px 0px 15px 0px #474747;
 }
 
 .app-interface-top-bar-container {
 	display: flex;
 	flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    cursor: move;
+	align-items: center;
+	justify-content: space-between;
+	cursor: move;
 }
 
-.app-interface-top-bar-left-icons-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-left: 5px;
+.app-interface-top-bar-left-icons-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	margin-left: 5px;
 }
 
-.app-interface-right-icons-container{
-    margin-right: 5px;
-    display: flex;
+.app-interface-right-icons-container {
+	margin-right: 5px;
+	display: flex;
 }
 
 .app-interface-top-bar-min-icon {
@@ -32,9 +32,9 @@
 	cursor: pointer;
 }
 
-.app-interface-top-bar-title{
-    font-size: 15px;
-    font-weight: bold;
+.app-interface-top-bar-title {
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .app-interface-top-bar-close-icon {
@@ -47,4 +47,3 @@
 	width: 20px;
 	height: 20px;
 }
-
