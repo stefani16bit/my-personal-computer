@@ -7,12 +7,12 @@ import Clock from "./components/Clock";
 import TaskBarAppDisplay from "./components/TaskBarAppDisplay";
 import Volume from "./components/Volume";
 import Clippy from "./components/Clippy";
-import PopUp from "./components/PopUp";
 
 import Terminal from "./apps/Terminal/Terminal";
 import Txt from "./apps/Txt/Txt";
 import MyPc from "./apps/MyPc/MyPc";
 import Doom from "./apps/Doom/Doom";
+import Paint from "./apps/Paint/Paint";
 
 import { useAppsManager } from "./context/AppsManagerContext";
 import { usePopUpsManager } from "./context/PopUpsManagerContext";
@@ -35,6 +35,7 @@ function App() {
 	const doomRef = useRef(null);
 	const computerScreenRef = useRef(null);
 	const browserRef = useRef(null);
+	const paintRef = useRef(null);
 
 	const [isTerminalOpened, setIsTerminalOpened] = useState(false);
 	const [isTxtOpened, setIsTxtOpened] = useState(false);
@@ -42,13 +43,15 @@ function App() {
 	const [isScreenTurnedOn, setIsScreenTurnedOn] = useState(false);
 	const [isDoomOpened, setIsDoomOpened] = useState(false);
 	const [isBrowserOpened, setIsBrowserOpened] = useState(false);
+	const [isPaintOpened, setIsPaintOpened] = useState(false);
 
 	const appsStateMap = {
-		termainal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
+		terminal: { ref: terminalRef, isOpened: isTerminalOpened, setIsOpened: setIsTerminalOpened },
 		txt: { ref: txtRef, isOpened: isTxtOpened, setIsOpened: setIsTxtOpened },
 		mypc: { ref: myPcRef, isOpened: isMyPcOpened, setIsOpened: setIsMyPcOpened },
 		doom: { ref: doomRef, isOpened: isDoomOpened, setIsOpened: setIsDoomOpened },
 		browser: { ref: browserRef, isOpened: isBrowserOpened, setIsOpened: setIsBrowserOpened },
+		paint: { ref: paintRef, isOpened: isPaintOpened, setIsOpened: setIsPaintOpened },
 	};
 
 	useEffect(() => {
@@ -67,7 +70,7 @@ function App() {
 		return () => {
 			registeredStateListeners.forEach((removeListener) => removeListener());
 		};
-	}, [terminalRef, txtRef, myPcRef, doomRef, isScreenTurnedOn, browserRef]);
+	}, [terminalRef, txtRef, myPcRef, doomRef, isScreenTurnedOn, browserRef, paintRef]);
 
 	useEffect(() => {
 		function onClick({ x, y }) {
@@ -114,6 +117,7 @@ function App() {
 						{isMyPcOpened ? myPcRef?.current?.render() : null}
 						{isDoomOpened ? doomRef?.current?.render() : null}
 						{isBrowserOpened ? browserRef?.current?.render() : null}
+						{isPaintOpened ? paintRef?.current?.render() : null}
 					</div>
 					<div className="computer-taskbar-container" ref={appsTaskBarParentRef}>
 						{openedApps.map((appRef) => {
@@ -201,6 +205,15 @@ function App() {
 									iconX={13}
 									iconY={1}
 									ref={doomRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
+								/>
+								<Paint
+									iconX={13}
+									iconY={2}
+									ref={paintRef}
 									parentRef={appsDisplayParentRef}
 									desktopWidth={DESKTOP_WIDTH}
 									desktopHeight={DESKTOP_HEIGHT}

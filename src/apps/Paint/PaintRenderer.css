@@ -1,0 +1,74 @@
+.paint-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #cbcbcb;
+}
+
+.paint-topbar-container {
+    display: flex;
+    width: 100%;
+}
+
+.paint-topbar {
+    display: flex;
+
+    column-gap: 10px;
+    padding: 5px;
+}
+
+.paint-topbar > a {
+    font-size: 11px;
+}
+
+.paint-topbar > a::first-letter {
+    text-decoration: underline;
+}
+
+.paint-canvas-container {
+    display: flex;
+    width: 100%;
+    column-gap: 5px;
+}
+
+.paint-tools-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.paint-tools-container > button {
+    width: 30px;
+    height: 30px;
+    background-color: #cbcbcb;
+    border: 1px outset #b9b9b9;
+    box-shadow: inset 1px 1px 1px 1px #e7e7e7;
+}
+
+.paint-canvas {
+    display: flex;
+    width: 100%;
+    height: 380px;
+    background-color: white;
+    border: none;
+    box-shadow: inset 2px 2px 2px 1px #7e7e7e;
+}
+
+.paint-pallette-container {
+    display: flex;
+    gap: 2px;
+}
+
+.paint-pallette-container > button {
+    width: 20px;
+    height: 20px;
+    border: 1px outset #b9b9b9;
+    box-shadow: inset 1px 1px 1px 1px #484848;
+}
+
+.divisor {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color:#ffffff ;
+}
