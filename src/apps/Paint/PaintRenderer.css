@@ -38,16 +38,17 @@
 }
 
 .paint-tools-container > button {
-    width: 30px;
+    display: flex;
+    align-items: center;
     height: 30px;
     background-color: #cbcbcb;
     border: 1px outset #b9b9b9;
     box-shadow: inset 1px 1px 1px 1px #e7e7e7;
 }
 
-.paint-canvas {
+#paint-canvas {
     display: flex;
-    width: 100%;
+    width: 380px;
     height: 380px;
     background-color: white;
     border: none;
@@ -71,4 +72,48 @@
     width: 100%;
     height: 1px;
     background-color:#ffffff ;
+}
+
+.white-paint {
+	background-color: white;
+}
+.black-paint {
+	background-color: black;
+}
+.gray-paint {
+	background-color: gray;
+}
+.brown-paint {
+	background-color: brown;
+}
+.red-paint {
+	background-color: red;
+}
+.pink-paint {
+	background-color: pink;
+}
+.orange-paint {
+	background-color: orange;
+}
+.yellow-paint {
+	background-color: yellow;
+}
+.blue-paint {
+	background-color: blue;
+}
+.green-paint {
+	background-color: green;
+}
+
+.paint-tools-container > input {
+    display: flex;
+    width: 30px;
+    height: 30px;
+}
+
+.paint-tools-container > button:hover {
+    background-color: #b7b7b7;
+    border: 1px outset rgb(95, 95, 95);
+    box-shadow: inset 1px 1px 1px 1px #979797;
+    cursor: pointer;
 }
