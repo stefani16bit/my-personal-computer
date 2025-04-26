@@ -7,7 +7,7 @@
 	padding: 1.5px;
 	z-index: 9000;
 	border: 2px outset;
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 	box-shadow: 1px 1px 1px 0px #3b3b3b;
 }
 
@@ -30,6 +30,6 @@
 	padding: 2px;
 	z-index: 9000;
 	border: 2px inset;
-	cursor: pointer
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 	
 }

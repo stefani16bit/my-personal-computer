@@ -18,7 +18,7 @@
 .terminal-renderer-container {
 	color: white;
 	background-color: black;
-	padding: 10px;
+	padding-left: 10px;
 	font-family: monospace;
 	overflow-y: auto;
 	height: 100%;

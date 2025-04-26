@@ -29,7 +29,7 @@
 .app-interface-top-bar-min-icon {
 	width: 20px;
 	height: 20px;
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 .app-interface-top-bar-title {
@@ -40,7 +40,7 @@
 .app-interface-top-bar-close-icon {
 	width: 20px;
 	height: 20px;
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 .app-interface-top-bar-icon {

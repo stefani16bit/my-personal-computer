@@ -92,7 +92,7 @@
 }
 
 .computer-button:hover {
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 .shadow {
@@ -203,7 +203,7 @@
 	border: 1px solid rgb(119, 115, 104);
 	border-radius: 30px;
 	box-shadow: inset 0px 0px 0px 5px rgb(172, 166, 150);
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151727), auto;
 }
 
 .computer-case-fans-container {
@@ -212,7 +212,7 @@
 }
 
 .computer-screen-icons-container img:hover {
-	cursor: pointer;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 .glitch-screen-effect {

@@ -1,30 +1,28 @@
 .volume-icon-container {
-    display: flex;
-    width:800px;
-    height: 25px;
-    position: absolute;
-    justify-content: end;
-    align-items: center;
-    margin-top: 568px;
-    margin-left: -120px;
+	display: flex;
+	width: 800px;
+	height: 25px;
+	position: absolute;
+	justify-content: end;
+	align-items: center;
+	margin-top: 568px;
+	margin-left: -120px;
 }
 
-
-.volume-icon-container img{
-    width: 30px;
-    height: 30px;
+.volume-icon-container img {
+	width: 30px;
+	height: 30px;
 }
 
-.volume-icon-container img:hover{
-    cursor: pointer;
+.volume-icon-container img:hover {
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
-.easter-egg{
-    height: 95px;
-    width: 10px;
+.easter-egg {
+	height: 95px;
+	width: 10px;
 	display: flex;
 	position: absolute;
-    bottom: 30px;
-    left: 730px;
-
+	bottom: 30px;
+	left: 730px;
 }
