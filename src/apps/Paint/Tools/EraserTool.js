@@ -1,30 +1,30 @@
 import Tool from "./Tool";
 
-class PencilTool extends Tool {
+class EraserTool extends Tool {
 	constructor(paintRendererRef) {
 		super(paintRendererRef);
-		this.isDrawing = false;
+		this.isErasing = false;
 	}
 
 	onMousePressBegin(event) {
-		this.isDrawing = true;
+		this.isErasing = true;
 	}
 
 	onMousePressLeave(event) {
-		this.isDrawing = false;
+		this.isErasing = false;
 	}
 
 	onMouseMove(event) {
-		if (!this.isDrawing) {
+		if (!this.isErasing) {
 			return;
 		}
 
 		const [x, y] = this.paintRendererRef.current.getPixelFromMousePosition(event);
-		this.paintRendererRef.current.paintPixel(x, y);
+        this.paintRendererRef.current.erasePixel(x, y);
 	}
 
-	onToolActivated() {
-		document.body.style.cursor = "url('./icons/mspaint-pencil.png'), auto";
+    onToolActivated() {
+		document.body.style.cursor = "url('./icons/mspaint-eraser.png'), auto";
 	}
 
 	onToolDisabled() {
@@ -32,4 +32,4 @@ class PencilTool extends Tool {
 	}
 }
 
-export default PencilTool;
+export default EraserTool;
