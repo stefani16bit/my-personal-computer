@@ -2,11 +2,17 @@ import { useEffect, useImperativeHandle, useState } from "react";
 import "./PaintRenderer.css";
 import { useRef } from "react";
 import PencilTool from "./Tools/PencilTool";
+import EraserTool from "./Tools/EraserTool";
+import ColorPickerTool from "./Tools/ColorPickerTool";
+import CanTool from "./Tools/CanTool";
 
-const CANVAS_RESOLUTION = 4;
+const CANVAS_RESOLUTION = 10;
+
+const CANVAS_WIDTH = 370;
+const CANVAS_HEIGHT = 400;
 
 function PaintRenderer({ appCoreRef }) {
-	const [currentSelectedTool, setCurrentSelectedTool] = useState("pencil");
+	const [currentSelectedTool, setCurrentSelectedTool] = useState("none");
 	const [selectedPixelColor, setSelectedPixelColor] = useState("#000000");
 	const [canvasContext2D, setCanvasContext2D] = useState(null);
 
@@ -15,42 +21,57 @@ function PaintRenderer({ appCoreRef }) {
 
 	const tools = {
 		pencil: new PencilTool(paintRendererRef),
-		//eraser: new EraserTool(canvasRef),
-		//can: new CanTool(canvasRef),
-		//colorpicker: new ColorPickerTool(canvasRef),
+		eraser: new EraserTool(paintRendererRef),
+		can: new CanTool(paintRendererRef),
+		colorPicker: new ColorPickerTool(paintRendererRef),
 	};
 
-	function paintPixel(x, y) {
-		canvasContext2D.fillStyle = selectedPixelColor;
+	function paintPixel(x, y, color) {
+		canvasContext2D.fillStyle = color || selectedPixelColor;
 		canvasContext2D.fillRect(x * CANVAS_RESOLUTION, y * CANVAS_RESOLUTION, CANVAS_RESOLUTION, CANVAS_RESOLUTION);
 	}
 
-	function erasePixel(x, y) {}
+	function erasePixel(x, y) {
+		canvasContext2D.fillStyle = "#FFFFFF";
+		canvasContext2D.fillRect(x * CANVAS_RESOLUTION, y * CANVAS_RESOLUTION, CANVAS_RESOLUTION, CANVAS_RESOLUTION);
+	}
 
-	function setSelectedColor(color) {}
+	function setSelectedColor(r, g, b) {
+		setSelectedPixelColor(rgbToHex(r, g, b));
+	}
 
 	function pickPixelColor(x, y) {
-		return canvasContext2D.getImageData(x, y, 1, 1).data;
+		return canvasContext2D.getImageData(x * CANVAS_RESOLUTION, y * CANVAS_RESOLUTION, 1, 1).data;
 	}
 
 	function getPixelFromMousePosition(event) {
-		let { left, top, width, height } = canvasRef.current.getBoundingClientRect();
+		let { left, top } = canvasRef.current.getBoundingClientRect();
 
 		let x = Math.floor((event.pageX - left) / CANVAS_RESOLUTION);
 		let y = Math.floor((event.pageY - top) / CANVAS_RESOLUTION);
 
-		x = Math.floor(Math.min(Math.max(x, 0), width / CANVAS_RESOLUTION));
-		y = Math.floor(Math.min(Math.max(y, 0), height / CANVAS_RESOLUTION));
+		x = Math.floor(Math.min(Math.max(x, 0), CANVAS_WIDTH / CANVAS_RESOLUTION));
+		y = Math.floor(Math.min(Math.max(y, 0), CANVAS_HEIGHT / CANVAS_RESOLUTION));
 
 		return [x, y];
 	}
 
 	function setCurrentTool(tool) {
+		if (currentSelectedTool in tools) {
+			tools[currentSelectedTool].onToolDisabled();
+		}
+
+		setCurrentSelectedTool(tool);
+
 		if (!tools[tool]) {
 			return;
 		}
 
-		setCurrentSelectedTool(tool);
+		tools[tool].onToolActivated();
+	}
+
+	function rgbToHex(r, g, b) {
+		return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
 	}
 
 	useImperativeHandle(paintRendererRef, () => ({
@@ -62,14 +83,16 @@ function PaintRenderer({ appCoreRef }) {
 		pickPixelColor: pickPixelColor,
 		getPixelFromMousePosition: getPixelFromMousePosition,
 		setCurrentTool: setCurrentTool,
+		rgbToHex: rgbToHex,
+		CANVAS_RESOLUTION: CANVAS_RESOLUTION,
+		CANVAS_WIDTH: CANVAS_WIDTH,
+		CANVAS_HEIGHT: CANVAS_HEIGHT,
 	}));
 
 	useEffect(() => {
 		if (canvasRef.current) {
-			setCanvasContext2D(canvasRef.current.getContext("2d"));
-
 			function onMouse1Click(event) {
-				if (!currentSelectedTool in tools) {
+				if (!(currentSelectedTool in tools)) {
 					return;
 				}
 
@@ -77,7 +100,7 @@ function PaintRenderer({ appCoreRef }) {
 			}
 
 			function onMouse2Click(event) {
-				if (!currentSelectedTool in tools) {
+				if (!(currentSelectedTool in tools)) {
 					return;
 				}
 
@@ -85,7 +108,7 @@ function PaintRenderer({ appCoreRef }) {
 			}
 
 			function onMousePressBegin(event) {
-				if (!currentSelectedTool in tools) {
+				if (!(currentSelectedTool in tools)) {
 					return;
 				}
 
@@ -93,7 +116,7 @@ function PaintRenderer({ appCoreRef }) {
 			}
 
 			function onMousePressLeave(event) {
-				if (!currentSelectedTool in tools) {
+				if (!(currentSelectedTool in tools)) {
 					return;
 				}
 
@@ -101,27 +124,53 @@ function PaintRenderer({ appCoreRef }) {
 			}
 
 			function onMouseMove(event) {
-				if (!currentSelectedTool in tools) {
+				if (!(currentSelectedTool in tools)) {
 					return;
 				}
 
 				tools[currentSelectedTool].onMouseMove(event);
 			}
 
-			window.addEventListener("click", onMouse1Click);
-			window.addEventListener("contextmenu", onMouse2Click);
-			window.addEventListener("mousedown", onMousePressBegin);
-			window.addEventListener("mouseup", onMousePressLeave);
-			window.addEventListener("mousemove", onMouseMove);
+			function onWindowResized() {}
+
+			const currentRef = canvasRef.current;
+			currentRef.addEventListener("click", onMouse1Click);
+			currentRef.addEventListener("contextmenu", onMouse2Click);
+			currentRef.addEventListener("mousedown", onMousePressBegin);
+			currentRef.addEventListener("mouseup", onMousePressLeave);
+			currentRef.addEventListener("mousemove", onMouseMove);
+
+			window.addEventListener("resize", onWindowResized);
+			onWindowResized();
 
 			return () => {
-				window.removeEventListener("click", onMouse1Click);
-				window.removeEventListener("contextmenu", onMouse2Click);
-				window.removeEventListener("mousedown", onMousePressBegin);
-				window.removeEventListener("mouseup", onMousePressLeave);
-				window.removeEventListener("mousemove", onMouseMove);
+				currentRef.removeEventListener("click", onMouse1Click);
+				currentRef.removeEventListener("contextmenu", onMouse2Click);
+				currentRef.removeEventListener("mousedown", onMousePressBegin);
+				currentRef.removeEventListener("mouseup", onMousePressLeave);
+				currentRef.removeEventListener("mousemove", onMouseMove);
+
+				window.removeEventListener("resize", onWindowResized);
 			};
 		}
+	});
+
+	useEffect(() => {
+		const canvasContext2D = canvasRef.current.getContext("2d");
+		setCanvasContext2D(canvasContext2D);
+
+		canvasContext2D.fillStyle = "#FFFFFF";
+		canvasContext2D.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+	}, []);
+
+	useEffect(() => {
+		return () => {
+			if (canvasRef.current !== null) {
+				return;
+			}
+
+			setCurrentTool("none");
+		};
 	});
 
 	return (
@@ -148,26 +197,33 @@ function PaintRenderer({ appCoreRef }) {
 					<button className="paint-can-tool" onClick={() => setCurrentTool("can")}>
 						<img src="./icons/mspaint-can.png" style={{ width: "20px", height: "20px" }}></img>
 					</button>
-					<button className="paint-colorpicker-tool" onClick={() => setCurrentTool("colorpicker")}>
+					<button className="paint-colorpicker-tool" onClick={() => setCurrentTool("colorPicker")}>
 						<img src="./icons/mspaint-colorpicker.png" style={{ width: "20px", height: "20px" }}></img>
 					</button>
 				</div>
-				<canvas id="paint-canvas" ref={canvasRef}></canvas>
+				<div className="html-paint-canvas-container">
+					<canvas id="paint-canvas" ref={canvasRef} width={`${CANVAS_WIDTH}px`} height={`${CANVAS_HEIGHT}px`}></canvas>
+				</div>
 			</div>
 			<div className="divisor-container">
 				<div className="divisor"></div>
 			</div>
-			<div className="paint-pallette-container">
-				<button className="white-paint"></button>
-				<button className="black-paint"></button>
-				<button className="gray-paint"></button>
-				<button className="brown-paint"></button>
-				<button className="red-paint"></button>
-				<button className="pink-paint"></button>
-				<button className="orange-paint"></button>
-				<button className="yellow-paint"></button>
-				<button className="blue-paint"></button>
-				<button className="green-paint"></button>
+			<div className="paint-color-container">
+				<div className="paint-color-selected-container">
+					<button className="paint-color-selected" style={{ backgroundColor: selectedPixelColor }}></button>
+				</div>
+				<div className="paint-pallette-container">
+					<button className="white-paint" onClick={() => setSelectedColor(255, 255, 255)}></button>
+					<button className="black-paint" onClick={() => setSelectedColor(0, 0, 0)}></button>
+					<button className="gray-paint" onClick={() => setSelectedColor(180, 180, 180)}></button>
+					<button className="brown-paint" onClick={() => setSelectedColor(150, 75, 0)}></button>
+					<button className="red-paint" onClick={() => setSelectedColor(255, 0, 0)}></button>
+					<button className="pink-paint" onClick={() => setSelectedColor(255, 192, 203)}></button>
+					<button className="orange-paint" onClick={() => setSelectedColor(250, 156, 28)}></button>
+					<button className="yellow-paint" onClick={() => setSelectedColor(255, 255, 0)}></button>
+					<button className="blue-paint" onClick={() => setSelectedColor(0, 0, 255)}></button>
+					<button className="green-paint" onClick={() => setSelectedColor(0, 255, 0)}></button>
+				</div>
 			</div>
 		</div>
 	);
