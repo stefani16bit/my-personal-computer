@@ -105,7 +105,7 @@ function App() {
 	};
 
 	return (
-		<div className="main">
+		<div className="main" id="computer-main">
 			{!isScreenTurnedOn && (
 				<div className="lock-computer-crt-container">
 					<img className="glitch-screen-effect" src="icons/glitch.gif" />
@@ -144,14 +144,14 @@ function App() {
 								style={{ position: "absolute", width: `${DESKTOP_HEIGHT}px`, height: `${DESKTOP_HEIGHT}px` }}
 							>
 								{/* {apps.map((app) => app.makeIcon())} */}
-								<Browser 
-								iconX={0}
-								iconY={0}
-								ref={browserRef}
-								parentRef={appsDisplayParentRef}
-								desktopWidth={DESKTOP_WIDTH}
-								desktopHeight={DESKTOP_HEIGHT}
-								taskbarHeight={TASKBAR_HEIGHT}
+								<Browser
+									iconX={0}
+									iconY={0}
+									ref={browserRef}
+									parentRef={appsDisplayParentRef}
+									desktopWidth={DESKTOP_WIDTH}
+									desktopHeight={DESKTOP_HEIGHT}
+									taskbarHeight={TASKBAR_HEIGHT}
 								/>
 								<IconDisplay icon="icons/bin.png" title="bin" x={14.5} y={6.5} />
 								<IconDisplay icon="icons/windows-folder.png" title="folder" x={14.5} y={2} />
