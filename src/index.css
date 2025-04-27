@@ -5,6 +5,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #161616;
 	overflow: hidden;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151727), auto;
 }
 
 * {
@@ -26,6 +27,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 ::-webkit-scrollbar {
@@ -43,6 +45,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
+	cursor: url(http://www.rw-designer.com/cursor-extern.php?id=151740), auto;
 }
 
 ::-webkit-scrollbar {
